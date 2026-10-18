@@ -274,6 +274,7 @@ function renderOutput(){
     <div><div class="nm">${pad(s.n)} ${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div>`;
   $('gallery').innerHTML = s.images.length > 1
     ? s.images.map((im, i) => `<img src="${im.src}" alt="${esc(im.label)}" title="${esc(im.label)}" data-zoom="${i}">`).join('') : '';
+  $('dlSample').hidden = !s.images.length;
   const {en, ko} = build();
   const ph = '위에 주제를 입력하면 프롬프트가 만들어집니다.';
   $('outEn').textContent = en || ph; $('outEn').classList.toggle('empty', !en);

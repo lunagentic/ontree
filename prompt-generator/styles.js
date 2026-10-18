@@ -111,18 +111,13 @@ window.STYLES = [
  },
  {
   "n": 8,
-  "name": "자유로운 손그림",
-  "old": "marker",
-  "id": "freehand_doodle",
-  "before": "마커 펜으로 채색한 2D 일러스트. 넓은 펜촉의 방향성 있는 획, 선명한 색면과 겹쳐 칠한 부분의 농도 차이, 또렷한 채색 경계를 표현한다. 완전히 균일한 벡터 색면, 거친 크레용 입자, 물감 번짐, 두꺼운 물감 융기, 3D 표현은 사용하지 않는다",
-  "after": "Hand-drawn doodle illustration, lively irregular pen and marker outlines, spontaneous scribbles, imperfect playful proportions, loose expressive lines, cheerful accents and whimsical sketchbook details. Avoid precise geometric construction and polished vector forms.",
-  "after_ko": "자유로운 어린이 낙서 손그림. 불규칙한 마커·펜 윤곽, 즉흥적인 선과 작은 장식, 유쾌하고 다소 어긋난 비율, 친근한 스케치북 감성을 살린다. 정밀한 기하학 도형과 사실적인 렌더링은 피한다.",
-  "images": [
-   {
-    "src": "images/08_freehand_doodle.png",
-    "label": "원본 가이드"
-   }
-  ]
+  "name": "라인아트",
+  "old": "",
+  "id": "line_art",
+  "before": "기존 '자유로운 손그림(freehand_doodle)' 스타일을 대체하는 신규 스타일",
+  "after": "Clean minimal line art illustration for children, smooth continuous monoline strokes with consistent fine line weight, dark charcoal or deep navy lines on a plain white background, simple friendly shapes with a few well-chosen interior details, generous negative space, elegant modern picture-book feel. Optionally one or two soft pastel accent fills on small areas only. Avoid sketchy or broken lines, scribbles, hatching, heavy shading, full color fills, gradients and 3D rendering.",
+  "after_ko": "어린이를 위한 깔끔하고 미니멀한 라인아트. 일정한 가는 굵기로 매끄럽게 이어지는 단선, 흰 배경 위 진회색이나 짙은 남색 선, 단순하고 친근한 형태와 꼭 필요한 내부 디테일, 넉넉한 여백으로 세련된 그림책 느낌을 살린다. 필요하면 작은 부분에만 은은한 파스텔 포인트 색을 한두 가지 넣을 수 있다. 끊기거나 스케치 같은 선, 낙서, 해칭, 짙은 명암, 전체 채색, 그라데이션, 3D 표현은 피한다.",
+  "images": []
  },
  {
   "n": 9,
