@@ -96,14 +96,46 @@ dialog::backdrop{background:#0009}
 .refstrip{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .refstrip figure{margin:0;position:relative}
 .refstrip img{width:48px;height:48px;object-fit:cover;border-radius:7px;border:1px solid var(--border);cursor:zoom-in;display:block}
+header .in{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header .hbtn{background:#ffffff26;color:#fff;border:1px solid #ffffff55}
+header .hbtn:hover{background:#ffffff3d}
+#mapping{max-width:1280px;margin:20px auto 0;padding:0 16px}
+#mapping .panel{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+th,td{border-bottom:1px solid var(--border);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);color:var(--accent-text);font-weight:700;white-space:nowrap}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--surface-2)}
+tbody tr.on{background:var(--accent-soft)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.tag{display:inline-block;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag.keep{background:#e3f4ea;color:#1a6d43}.tag.split{background:#fff1d6;color:#8a5a00}.tag.new{background:#e6edfa;color:#174087}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.keep{background:#1d3b2b;color:#7ddca9}:root:not([data-theme="light"]) .tag.split{background:#3d3018;color:#f0c674}:root:not([data-theme="light"]) .tag.new{background:#22345a;color:#bcd0f7}}
+details.before{margin-top:12px;font-size:13px}
+details.before summary{cursor:pointer;color:var(--muted);font-size:12px}
+details.before .prompt{margin-top:6px}
 .refstrip figcaption{position:absolute;left:3px;top:3px;background:var(--accent);color:#fff;font-size:10px;border-radius:5px;padding:0 4px;font-weight:700}
 </style>
 </head>
 <body>
 <header><div class="in">
-  <h1>스타일 마스터 검수</h1>
-  <p>주제를 입력하고 18종 스타일 중 하나를 고르면 이미지 생성용 영문·한글 프롬프트를 만들어 드립니다.</p>
+  <div>
+    <h1>스타일 마스터 검수</h1>
+    <p>주제를 입력하고 18종 스타일 중 하나를 고르면 이미지 생성용 영문·한글 프롬프트를 만들어 드립니다.</p>
+  </div>
+  <button class="btn hbtn" id="toggleMap" aria-expanded="false" aria-controls="mapping">기존 유형 매칭표 보기</button>
 </div></header>
+
+<div id="mapping" hidden>
+  <section class="panel">
+    <h2 style="flex-wrap:wrap">기존 유형 매칭표</h2>
+    <p class="hint" style="margin:-4px 0 10px">행을 누르면 해당 스타일이 선택됩니다.</p>
+    <table>
+      <thead><tr><th>No.</th><th>스타일명</th><th>기존 ID</th><th>최종 ID</th><th>처리</th></tr></thead>
+      <tbody id="mapBody"></tbody>
+    </table>
+  </section>
+</div>
 
 <main>
   <div>
@@ -144,6 +176,11 @@ dialog::backdrop{background:#0009}
         <div class="out-head"><strong>한국어</strong><button class="btn secondary" id="copyKo">한글 복사</button></div>
         <div class="prompt" id="outKo"></div>
       </div>
+      <details class="before">
+        <summary>기존 프롬프트 보기 · <span id="beforeId"></span></summary>
+        <div class="out-head"><strong>기존 프롬프트</strong><button class="btn secondary" id="copyBefore">복사</button></div>
+        <div class="prompt" id="outBefore"></div>
+      </details>
       <p class="status" id="status" role="status"></p>
       <p class="hint" id="refHint" hidden>참고 이미지를 쓰는 경우, 이미지 생성 도구에 프롬프트와 함께 위 순서(1, 2, 3…)대로 이미지를 첨부하세요.</p>
       <p class="hint">영문 주제를 비워두면 영문 프롬프트에 한글 주제가 그대로 들어갑니다. 대부분의 이미지 모델은 이해하지만, 정확도를 높이려면 영문 주제를 함께 적어 주세요.</p>
@@ -275,11 +312,30 @@ function renderOutput(){
   $('gallery').innerHTML = s.images.length > 1
     ? s.images.map((im, i) => `<img src="${im.src}" alt="${esc(im.label)}" title="${esc(im.label)}" data-zoom="${i}">`).join('') : '';
   $('dlSample').hidden = !s.images.length;
+  $('beforeId').textContent = s.old ? `기존 ID ${s.old}` : '기존 ID 없음';
+  $('outBefore').textContent = s.before || '기존 프롬프트 없음';
+  renderMap();
   const {en, ko} = build();
   const ph = '위에 주제를 입력하면 프롬프트가 만들어집니다.';
   $('outEn').textContent = en || ph; $('outEn').classList.toggle('empty', !en);
   $('outKo').textContent = ko || ph; $('outKo').classList.toggle('empty', !ko);
   $('copyEn').disabled = !en; $('copyKo').disabled = !ko;
+}
+
+// 기존 유형 매칭표: 기존 ID → 최종 ID 처리 내역
+function mapStatus(s){
+  if (s.status) return {text: s.status, cls: 'new'};
+  if (!s.old) return {text: '신규 추가', cls: 'new'};
+  return s.old === s.id ? {text: '개선 / 유지', cls: 'keep'} : {text: '기존에서 분리·변경', cls: 'split'};
+}
+function renderMap(){
+  if ($('mapping').hidden) return;
+  $('mapBody').innerHTML = STYLES.map(s => {
+    const st = mapStatus(s);
+    return `<tr data-id="${s.id}" class="${s.id === state.styleId ? 'on' : ''}" tabindex="0">
+      <td>${pad(s.n)}</td><td>${esc(s.name)}</td><td>${s.old ? `<code>${esc(s.old)}</code>` : '—'}</td>
+      <td><code>${esc(s.id)}</code></td><td><span class="tag ${st.cls}">${esc(st.text)}</span></td></tr>`;
+  }).join('');
 }
 
 function copy(text){
@@ -371,6 +427,23 @@ $('refs').addEventListener('click', e => {
   } else zoomRef(e);
 });
 $('refStrip').addEventListener('click', zoomRef);
+
+$('toggleMap').addEventListener('click', () => {
+  const show = $('mapping').hidden;
+  $('mapping').hidden = !show;
+  $('toggleMap').setAttribute('aria-expanded', show);
+  $('toggleMap').textContent = show ? '기존 유형 매칭표 닫기' : '기존 유형 매칭표 보기';
+  renderMap();
+});
+function pickFromMap(e){
+  const tr = e.target.closest('tr[data-id]'); if (!tr) return;
+  if (e.type === 'keydown' && e.key !== 'Enter') return;
+  state.styleId = tr.dataset.id; save(); renderGrid(); renderOutput();
+  document.querySelector(`.style[data-id="${tr.dataset.id}"]`)?.scrollIntoView({behavior:'smooth', block:'center'});
+}
+$('mapBody').addEventListener('click', pickFromMap);
+$('mapBody').addEventListener('keydown', pickFromMap);
+$('copyBefore').addEventListener('click', () => copy(current().before || ''));
 
 renderGrid(); renderRefs(); renderOutput();
 db.get('refs').then(v => { if (Array.isArray(v) && v.length) { refs = v.slice(0, MAX_REFS); renderRefs(); renderOutput(); } }).catch(() => {});
