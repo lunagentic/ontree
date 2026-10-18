@@ -24,4 +24,7 @@
 
 ## 배포
 
-GitHub Pages (`main` 브랜치 루트)로 배포됩니다.
+`lunagentic/ontree` 저장소의 `style-review/` 폴더에 넣어 GitHub Pages로 배포합니다.
+
+- 주소: https://lunagentic.github.io/ontree/style-review/
+- 예전 주소 `/ontree/prompt-generator/`는 새 주소로 자동 이동합니다.

@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스타일 마스터 검수</title>
+<meta name="description" content="킨더보드 이미지 스타일 18종을 검수하고, 주제와 조합해 영문·한글 이미지 생성 프롬프트를 만듭니다.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="스타일 마스터 검수">
+<meta property="og:description" content="킨더보드 이미지 스타일 18종을 검수하고, 주제와 조합해 영문·한글 이미지 생성 프롬프트를 만듭니다.">
+<meta property="og:url" content="https://lunagentic.github.io/ontree/style-review/">
+<meta property="og:image" content="https://lunagentic.github.io/ontree/style-review/images/07_texture_collage.jpg">
+<meta property="og:image:width" content="1491">
+<meta property="og:image:height" content="1055">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --bg:#f4f7fc;--surface:#fff;--surface-2:#eef2f9;--border:#dbe3ee;
+  --text:#142a4d;--muted:#5f6f86;--accent:#2057b5;--accent-soft:#e6edfa;--accent-text:#174087;
+  --header:#113d8c;--ok:#1a6d43;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1724;--surface:#172234;--surface-2:#1e2b40;--border:#2a3a54;
+    --text:#e3eaf5;--muted:#9aa9c0;--accent:#5b8ef0;--accent-soft:#22345a;--accent-text:#bcd0f7;
+    --header:#0b2a63;--ok:#5fd29a;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1724;--surface:#172234;--surface-2:#1e2b40;--border:#2a3a54;
+  --text:#e3eaf5;--muted:#9aa9c0;--accent:#5b8ef0;--accent-soft:#22345a;--accent-text:#bcd0f7;
+  --header:#0b2a63;--ok:#5fd29a;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{font-family:system-ui,-apple-system,'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);line-height:1.5}
+header{background:var(--header);color:#fff;padding:22px 16px}
+header .in{max-width:1280px;margin:auto}
+h1{font-size:22px;margin:0 0 4px}
+header p{margin:0;opacity:.85;font-size:14px}
+main{max-width:1280px;margin:auto;padding:20px 16px 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:20px;align-items:start}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+section.panel{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+h2{font-size:15px;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+h2 .step{background:var(--accent);color:#fff;border-radius:99px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+label.field{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+label.field span{font-weight:400;color:var(--muted)}
+input[type=text],input[type=search],textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:9px;font:inherit;font-size:14px;background:var(--surface);color:var(--text)}
+textarea{resize:vertical;min-height:64px}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:99px;padding:5px 10px;font-size:12px;cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+.styles-head{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:18px;flex-wrap:wrap}
+.styles-head h2{margin:0}
+.styles-head input{max-width:220px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
+.style{position:relative;border:2px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden;cursor:pointer;text-align:left;padding:0;color:var(--text);font:inherit}
+.style:hover{border-color:var(--accent)}
+.style[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.style .thumb{aspect-ratio:1/1;background:var(--surface-2);display:flex;align-items:center;justify-content:center}
+.style img{width:100%;height:100%;object-fit:contain;display:block}
+.style .meta{padding:7px 9px}
+.style .no{font-size:11px;color:var(--muted)}
+.style .nm{font-size:13px;font-weight:700;line-height:1.3}
+.style .check{position:absolute;top:6px;right:6px;background:var(--accent);color:#fff;border-radius:99px;width:22px;height:22px;display:none;align-items:center;justify-content:center;font-size:13px}
+.style[aria-checked="true"] .check{display:flex}
+aside{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:900px){aside{position:static}}
+.selected{display:flex;gap:12px;align-items:center}
+.selected img{width:72px;height:72px;object-fit:contain;border-radius:10px;background:var(--surface-2);cursor:zoom-in;flex:none}
+.selected .nm{font-weight:800}
+.selected .id{font-size:12px;color:var(--muted);font-family:ui-monospace,Consolas,monospace}
+.gallery{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.gallery img{width:56px;height:56px;object-fit:contain;border-radius:8px;background:var(--surface-2);cursor:zoom-in;border:1px solid var(--border)}
+.out{margin-top:4px}
+.out-head{display:flex;justify-content:space-between;align-items:center;margin:12px 0 6px}
+.out-head strong{font-size:13px}
+.prompt{background:var(--surface-2);border-radius:9px;padding:11px;font-size:13px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;min-height:60px}
+.prompt.empty{color:var(--muted)}
+button.btn{cursor:pointer;border:0;background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;font-weight:650;font-size:12px;font-family:inherit}
+button.btn.secondary{background:var(--accent-soft);color:var(--accent-text)}
+button.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.status{font-size:12px;color:var(--ok);min-height:18px;margin:8px 0 0}
+.hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+dialog{border:0;border-radius:12px;padding:12px;max-width:96vw;max-height:96vh;background:var(--surface);color:var(--text)}
+dialog img{display:block;max-width:90vw;max-height:80vh;object-fit:contain}
+dialog::backdrop{background:#0009}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;font-size:13px}
+.drop{margin-top:4px;border:2px dashed var(--border);border-radius:12px;padding:14px;text-align:center;font-size:13px;color:var(--muted);cursor:pointer;background:var(--surface-2)}
+.drop:hover,.drop.over{border-color:var(--accent);color:var(--accent-text)}
+.drop strong{color:var(--accent-text)}
+.refs{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.ref{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:8px;background:var(--surface)}
+.ref img{width:64px;height:64px;object-fit:cover;border-radius:8px;background:var(--surface-2);cursor:zoom-in}
+.ref .fields{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ref .top{display:flex;gap:6px;align-items:center;font-size:12px;font-weight:700}
+.ref select,.ref input{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--border);border-radius:7px;background:var(--surface);color:var(--text);min-width:0}
+.ref input{width:100%}
+.ref .rm{background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;padding:4px 8px;border-radius:6px}
+.ref .rm:hover{color:var(--text);background:var(--surface-2)}
+.refstrip{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.refstrip figure{margin:0;position:relative}
+.refstrip img{width:48px;height:48px;object-fit:cover;border-radius:7px;border:1px solid var(--border);cursor:zoom-in;display:block}
+header .in{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header .hbtn{background:#ffffff26;color:#fff;border:1px solid #ffffff55}
+header .hbtn:hover{background:#ffffff3d}
+#mapping{max-width:1280px;margin:20px auto 0;padding:0 16px}
+#mapping .panel{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+th,td{border-bottom:1px solid var(--border);padding:9px 10px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);color:var(--accent-text);font-weight:700;white-space:nowrap}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--surface-2)}
+tbody tr.on{background:var(--accent-soft)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.tag{display:inline-block;border-radius:99px;padding:2px 8px;font-size:11px;font-weight:700;white-space:nowrap}
+.tag.keep{background:#e3f4ea;color:#1a6d43}.tag.split{background:#fff1d6;color:#8a5a00}.tag.new{background:#e6edfa;color:#174087}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.keep{background:#1d3b2b;color:#7ddca9}:root:not([data-theme="light"]) .tag.split{background:#3d3018;color:#f0c674}:root:not([data-theme="light"]) .tag.new{background:#22345a;color:#bcd0f7}}
+details.before{margin-top:12px;font-size:13px}
+details.before summary{cursor:pointer;color:var(--muted);font-size:12px}
+details.before .prompt{margin-top:6px}
+.refstrip figcaption{position:absolute;left:3px;top:3px;background:var(--accent);color:#fff;font-size:10px;border-radius:5px;padding:0 4px;font-weight:700}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <div>
+    <h1>스타일 마스터 검수</h1>
+    <p>주제를 입력하고 18종 스타일 중 하나를 고르면 이미지 생성용 영문·한글 프롬프트를 만들어 드립니다.</p>
+  </div>
+  <button class="btn hbtn" id="toggleMap" aria-expanded="false" aria-controls="mapping">기존 유형 매칭표 보기</button>
+</div></header>
+
+<div id="mapping" hidden>
+  <section class="panel">
+    <h2 style="flex-wrap:wrap">기존 유형 매칭표</h2>
+    <p class="hint" style="margin:-4px 0 10px">행을 누르면 해당 스타일이 선택됩니다.</p>
+    <table>
+      <thead><tr><th>No.</th><th>스타일명</th><th>기존 ID</th><th>최종 ID</th><th>처리</th></tr></thead>
+      <tbody id="mapBody"></tbody>
+    </table>
+  </section>
+</div>
+
+<main>
+  <div>
+    <section class="panel">
+      <h2><span class="step">1</span>무엇을 그릴까요?</h2>
+      <label class="field" for="subject">주제 <span>(필수)</span></label>
+      <input type="text" id="subject" placeholder="예: 사과를 든 토끼" autocomplete="off">
+      <div class="chips" id="examples"></div>
+      <label class="field" for="subjectEn">영문 주제 <span>(선택 · 비우면 위 주제를 그대로 사용)</span></label>
+      <input type="text" id="subjectEn" placeholder="e.g. a rabbit holding an apple" autocomplete="off">
+      <label class="field" for="details">추가 요청 <span>(선택 · 배경, 색, 구도 등)</span></label>
+      <textarea id="details" placeholder="예: 흰 배경, 정면, 하나의 대상만"></textarea>
+
+      <label class="field" for="refFile">참고 이미지 <span>(선택 · 최대 6장, 장당 4MB 이하)</span></label>
+      <div class="drop" id="drop" role="button" tabindex="0">이미지를 끌어다 놓거나 <strong>클릭해서 추가</strong>하세요. 붙여넣기(Ctrl+V)도 됩니다.</div>
+      <input type="file" id="refFile" accept="image/png,image/jpeg,image/webp" multiple hidden>
+      <div class="refs" id="refs"></div>
+
+      <div class="styles-head">
+        <h2><span class="step">2</span>스타일 선택</h2>
+        <input type="search" id="search" placeholder="스타일명 / ID 검색" aria-label="스타일 검색">
+      </div>
+      <div class="grid" id="grid" role="radiogroup" aria-label="스타일"></div>
+    </section>
+  </div>
+
+  <aside>
+    <section class="panel">
+      <h2><span class="step">3</span>생성된 프롬프트</h2>
+      <div id="selected" class="selected"></div>
+      <div id="gallery" class="gallery"></div>
+      <div class="row" style="margin-top:10px"><button class="btn secondary" id="dlSample">스타일 샘플 다운로드</button><button class="btn secondary" id="dlRefs" hidden>참고 이미지 전체 다운로드</button></div>
+      <div id="refStrip" class="refstrip" aria-label="첨부할 참고 이미지"></div>
+
+      <div class="out">
+        <div class="out-head"><strong>English</strong><button class="btn" id="copyEn">영문 복사</button></div>
+        <div class="prompt" id="outEn"></div>
+        <div class="out-head"><strong>한국어</strong><button class="btn secondary" id="copyKo">한글 복사</button></div>
+        <div class="prompt" id="outKo"></div>
+      </div>
+      <details class="before">
+        <summary>기존 프롬프트 보기 · <span id="beforeId"></span></summary>
+        <div class="out-head"><strong>기존 프롬프트</strong><button class="btn secondary" id="copyBefore">복사</button></div>
+        <div class="prompt" id="outBefore"></div>
+      </details>
+      <p class="status" id="status" role="status"></p>
+      <p class="hint" id="refHint" hidden>참고 이미지를 쓰는 경우, 이미지 생성 도구에 프롬프트와 함께 위 순서(1, 2, 3…)대로 이미지를 첨부하세요.</p>
+      <p class="hint">영문 주제를 비워두면 영문 프롬프트에 한글 주제가 그대로 들어갑니다. 대부분의 이미지 모델은 이해하지만, 정확도를 높이려면 영문 주제를 함께 적어 주세요.</p>
+    </section>
+  </aside>
+</main>
+
+<dialog id="preview">
+  <div class="dlg-head"><span id="previewLabel"></span><div class="row"><button class="btn" id="previewDownload">다운로드</button><button class="btn secondary" onclick="this.closest('dialog').close()">닫기</button></div></div>
+  <img id="previewImg" alt="">
+</dialog>
+
+<script src="styles.js"></script>
+<script>
+const STYLES = window.STYLES;
+const EXAMPLES = ['사과를 든 토끼','숲속을 걷는 곰','무지개와 구름','바닷속 물고기 친구들','해바라기 꽃밭','공룡 친구'];
+const STORE = 'kb_prompt_gen_v1';
+const $ = id => document.getElementById(id);
+
+let state = {subject:'', subjectEn:'', details:'', styleId: STYLES[0].id};
+try { Object.assign(state, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) {}
+if (!STYLES.some(s => s.id === state.styleId)) state.styleId = STYLES[0].id;
+
+const pad = n => String(n).padStart(2, '0');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean = s => s.trim().replace(/\s+/g, ' ').replace(/[.。]+$/, '');
+
+function save(){ try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) {} }
+function current(){ return STYLES.find(s => s.id === state.styleId); }
+
+// 참고 이미지: 역할별 프롬프트 지시문
+const ROLES = {
+  subject:     {ko:'캐릭터·대상', en:'match the character/subject design (shape, key features and colors)', ko_line:'캐릭터·대상의 생김새(형태, 주요 특징, 색)를 따른다'},
+  composition: {ko:'구도',       en:'follow the composition, framing and layout', ko_line:'구도와 화면 배치를 따른다'},
+  color:       {ko:'색감',       en:'use the color palette and overall tone', ko_line:'색 팔레트와 전체 톤을 따른다'},
+  pose:        {ko:'자세·동작',   en:'follow the pose and action', ko_line:'자세와 동작을 따른다'},
+  background:  {ko:'배경',       en:'use the background setting and environment', ko_line:'배경과 공간 설정을 따른다'},
+};
+const MAX_REFS = 6, MAX_BYTES = 4 * 1024 * 1024;
+let refs = []; // {id, name, data, role, note}
+
+const db = (() => {
+  let p;
+  const open = () => p ??= new Promise((res, rej) => {
+    const r = indexedDB.open('kb_prompt_gen', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('kv');
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+  });
+  const tx = (mode, fn) => open().then(d => new Promise((res, rej) => {
+    const t = d.transaction('kv', mode), q = fn(t.objectStore('kv'));
+    t.oncomplete = () => res(q?.result); t.onerror = () => rej(t.error);
+  }));
+  return {get: k => tx('readonly', s => s.get(k)), set: (k, v) => tx('readwrite', s => s.put(v, k))};
+})();
+function saveRefs(){ db.set('refs', refs).catch(() => status('이 브라우저에는 참고 이미지를 저장할 수 없어 새로고침하면 사라집니다.')); }
+
+function refLines(lang){
+  if (!refs.length) return '';
+  const head = lang === 'en' ? 'Reference images (attached in this order):' : '참고 이미지 (첨부 순서대로):';
+  return '\n\n' + head + '\n' + refs.map((r, i) => {
+    const role = ROLES[r.role] || ROLES.subject, note = clean(r.note || '');
+    return lang === 'en'
+      ? `- Image ${i + 1}: ${role.en}${note ? ` — ${note}` : ''}.`
+      : `- 이미지 ${i + 1}: ${role.ko_line}${note ? ` — ${note}` : ''}.`;
+  }).join('\n') + (lang === 'en'
+    ? '\nUse the references only for what is listed above; render everything in the style below.'
+    : '\n참고 이미지는 위에 적은 부분만 참고하고, 표현은 아래 스타일을 따른다.');
+}
+
+function build(){
+  const s = current();
+  const subj = clean(state.subject);
+  const subjEn = clean(state.subjectEn) || subj;
+  const det = clean(state.details);
+  if (!subj) return {en:'', ko:''};
+  const en = `${subjEn}.` + (det ? ` ${det}.` : '') + refLines('en') + `\n\nStyle: ${s.after}`;
+  const ko = `${subj}.` + (det ? ` ${det}.` : '') + refLines('ko') + `\n\n스타일: ${s.after_ko}`;
+  return {en, ko};
+}
+
+function renderRefs(){
+  $('refs').innerHTML = refs.map((r, i) => `<div class="ref" data-i="${i}">
+    <img src="${r.data}" alt="참고 이미지 ${i + 1}" data-ref="${i}">
+    <div class="fields">
+      <div class="top">이미지 ${i + 1}
+        <select data-k="role" aria-label="이미지 ${i + 1} 참고 용도">${Object.entries(ROLES).map(([k, v]) => `<option value="${k}"${k === r.role ? ' selected' : ''}>${v.ko}</option>`).join('')}</select>
+      </div>
+      <input type="text" data-k="note" value="${esc(r.note)}" placeholder="메모 (선택) 예: 귀 모양만" aria-label="이미지 ${i + 1} 메모">
+    </div>
+    <button type="button" class="rm" data-rm="${i}" aria-label="이미지 ${i + 1} 삭제" title="삭제">✕</button>
+  </div>`).join('');
+  $('refStrip').innerHTML = refs.map((r, i) => `<figure><img src="${r.data}" alt="참고 이미지 ${i + 1}" data-ref="${i}"><figcaption>${i + 1}</figcaption></figure>`).join('');
+  $('refHint').hidden = $('dlRefs').hidden = !refs.length;
+  $('drop').hidden = refs.length >= MAX_REFS;
+}
+
+async function addFiles(files){
+  let added = 0;
+  for (const f of files) {
+    if (refs.length >= MAX_REFS) { status(`참고 이미지는 최대 ${MAX_REFS}장까지 추가할 수 있습니다.`); break; }
+    if (!['image/png','image/jpeg','image/webp'].includes(f.type)) { status('PNG, JPG, WebP 이미지만 추가할 수 있습니다.'); continue; }
+    if (f.size > MAX_BYTES) { status('이미지당 4MB 이하로 올려주세요.'); continue; }
+    const data = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); });
+    refs.push({id: Date.now() + '_' + Math.random().toString(36).slice(2, 7), name: f.name || 'image', data, role: refs.length ? 'composition' : 'subject', note: ''});
+    added++;
+  }
+  if (added) { saveRefs(); renderRefs(); renderOutput(); status(`참고 이미지 ${added}장을 추가하고 프롬프트를 업데이트했습니다.`); }
+}
+
+function status(t){ $('status').textContent = t; clearTimeout(status.t); status.t = setTimeout(() => $('status').textContent = '', 3000); }
+
+function renderGrid(){
+  const q = $('search').value.trim().toLowerCase();
+  const list = STYLES.filter(s => (s.name + s.id + (s.old || '')).toLowerCase().includes(q));
+  $('grid').innerHTML = list.map(s => {
+    const img = s.images[0];
+    return `<button type="button" class="style" role="radio" aria-checked="${s.id === state.styleId}" data-id="${s.id}">
+      <div class="thumb">${img ? `<img src="${img.src}" alt="" loading="lazy">` : '<span class="no">이미지 없음</span>'}</div>
+      <div class="meta"><div class="no">${pad(s.n)} · ${esc(s.id)}</div><div class="nm">${esc(s.name)}</div></div>
+      <span class="check" aria-hidden="true">✓</span></button>`;
+  }).join('') || '<p class="hint">검색 결과가 없습니다.</p>';
+}
+
+function renderOutput(){
+  const s = current();
+  const first = s.images[0];
+  $('selected').innerHTML = `${first ? `<img src="${first.src}" alt="${esc(s.name)} 예시" data-zoom="0">` : ''}
+    <div><div class="nm">${pad(s.n)} ${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div>`;
+  $('gallery').innerHTML = s.images.length > 1
+    ? s.images.map((im, i) => `<img src="${im.src}" alt="${esc(im.label)}" title="${esc(im.label)}" data-zoom="${i}">`).join('') : '';
+  $('dlSample').hidden = !s.images.length;
+  $('beforeId').textContent = s.old ? `기존 ID ${s.old}` : '기존 ID 없음';
+  $('outBefore').textContent = s.before || '기존 프롬프트 없음';
+  renderMap();
+  const {en, ko} = build();
+  const ph = '위에 주제를 입력하면 프롬프트가 만들어집니다.';
+  $('outEn').textContent = en || ph; $('outEn').classList.toggle('empty', !en);
+  $('outKo').textContent = ko || ph; $('outKo').classList.toggle('empty', !ko);
+  $('copyEn').disabled = !en; $('copyKo').disabled = !ko;
+}
+
+// 기존 유형 매칭표: 기존 ID → 최종 ID 처리 내역
+function mapStatus(s){
+  if (s.status) return {text: s.status, cls: 'new'};
+  if (!s.old) return {text: '신규 추가', cls: 'new'};
+  return s.old === s.id ? {text: '개선 / 유지', cls: 'keep'} : {text: '기존에서 분리·변경', cls: 'split'};
+}
+function renderMap(){
+  if ($('mapping').hidden) return;
+  $('mapBody').innerHTML = STYLES.map(s => {
+    const st = mapStatus(s);
+    return `<tr data-id="${s.id}" class="${s.id === state.styleId ? 'on' : ''}" tabindex="0">
+      <td>${pad(s.n)}</td><td>${esc(s.name)}</td><td>${s.old ? `<code>${esc(s.old)}</code>` : '—'}</td>
+      <td><code>${esc(s.id)}</code></td><td><span class="tag ${st.cls}">${esc(st.text)}</span></td></tr>`;
+  }).join('');
+}
+
+function copy(text){
+  const done = () => status('복사했습니다');
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text).then(done).catch(fallback); else fallback();
+  function fallback(){ const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); done(); }
+}
+
+// 이미지 다운로드 (샘플은 상대 경로, 참고 이미지는 data URL)
+const extOf = src => (src.match(/^data:image\/(png|jpeg|webp)/)?.[1] || src.split('.').pop()).replace('jpeg', 'jpg');
+const safeName = s => s.replace(/[\\/:*?"<>|\s]+/g, '_');
+function download(src, filename){
+  const a = document.createElement('a');
+  a.href = src; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+const sampleName = (s, i) => `${pad(s.n)}_${s.id}${i ? '_' + (i + 1) : ''}.${extOf(s.images[i].src)}`;
+const refName = i => `ref_${i + 1}_${refs[i].role}.${extOf(refs[i].data)}`;
+
+let previewFile = null;
+function showImage(src, label, filename){
+  $('previewImg').src = src; $('previewImg').alt = label;
+  $('previewLabel').textContent = label;
+  previewFile = {src, filename};
+  $('preview').showModal();
+}
+function zoom(i){
+  const s = current(), im = s.images[i]; if (!im) return;
+  showImage(im.src, `${s.name} · ${im.label}`, sampleName(s, i));
+}
+function zoomRef(e){
+  const i = e.target.dataset.ref;
+  if (i !== undefined && refs[i]) showImage(refs[i].data, `참고 이미지 ${+i + 1} · ${refs[i].name}`, refName(+i));
+}
+$('previewDownload').addEventListener('click', () => previewFile && download(previewFile.src, safeName(previewFile.filename)));
+$('dlSample').addEventListener('click', () => {
+  const s = current();
+  s.images.forEach((_, i) => setTimeout(() => download(s.images[i].src, sampleName(s, i)), i * 300));
+  status(`${s.name} 샘플 ${s.images.length}장을 다운로드합니다.`);
+});
+$('dlRefs').addEventListener('click', () => {
+  refs.forEach((_, i) => setTimeout(() => download(refs[i].data, refName(i)), i * 300));
+  status(`참고 이미지 ${refs.length}장을 첨부 순서대로 다운로드합니다.`);
+});
+
+// events
+for (const k of ['subject','subjectEn','details']) {
+  $(k).value = state[k];
+  $(k).addEventListener('input', e => { state[k] = e.target.value; save(); renderOutput(); });
+}
+$('search').addEventListener('input', renderGrid);
+$('grid').addEventListener('click', e => {
+  const b = e.target.closest('.style'); if (!b) return;
+  state.styleId = b.dataset.id; save(); renderGrid(); renderOutput();
+  if (matchMedia('(max-width:900px)').matches) $('selected').scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('selected').addEventListener('click', e => { if (e.target.dataset.zoom) zoom(+e.target.dataset.zoom); });
+$('gallery').addEventListener('click', e => { if (e.target.dataset.zoom) zoom(+e.target.dataset.zoom); });
+$('copyEn').addEventListener('click', () => copy(build().en));
+$('copyKo').addEventListener('click', () => copy(build().ko));
+$('examples').innerHTML = EXAMPLES.map(x => `<button type="button" class="chip">${esc(x)}</button>`).join('');
+$('examples').addEventListener('click', e => {
+  if (!e.target.classList.contains('chip')) return;
+  state.subject = $('subject').value = e.target.textContent;
+  state.subjectEn = $('subjectEn').value = '';
+  save(); renderOutput();
+});
+
+// 참고 이미지 이벤트: 추가·수정·삭제할 때마다 프롬프트를 즉시 다시 만든다
+$('drop').addEventListener('click', () => $('refFile').click());
+$('drop').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('refFile').click(); } });
+$('refFile').addEventListener('change', e => { addFiles([...e.target.files]); e.target.value = ''; });
+$('drop').addEventListener('dragover', e => { e.preventDefault(); $('drop').classList.add('over'); });
+$('drop').addEventListener('dragleave', () => $('drop').classList.remove('over'));
+$('drop').addEventListener('drop', e => { e.preventDefault(); $('drop').classList.remove('over'); addFiles([...e.dataTransfer.files]); });
+document.addEventListener('paste', e => {
+  const files = [...(e.clipboardData?.files || [])].filter(f => f.type.startsWith('image/'));
+  if (files.length) { e.preventDefault(); addFiles(files); }
+});
+$('refs').addEventListener('input', e => {
+  const k = e.target.dataset.k, i = e.target.closest('.ref')?.dataset.i;
+  if (!k || i === undefined) return;
+  refs[i][k] = e.target.value; saveRefs(); renderOutput();
+});
+$('refs').addEventListener('click', e => {
+  if (e.target.dataset.rm !== undefined) {
+    refs.splice(+e.target.dataset.rm, 1); saveRefs(); renderRefs(); renderOutput();
+    status('참고 이미지를 삭제하고 프롬프트를 업데이트했습니다.');
+  } else zoomRef(e);
+});
+$('refStrip').addEventListener('click', zoomRef);
+
+$('toggleMap').addEventListener('click', () => {
+  const show = $('mapping').hidden;
+  $('mapping').hidden = !show;
+  $('toggleMap').setAttribute('aria-expanded', show);
+  $('toggleMap').textContent = show ? '기존 유형 매칭표 닫기' : '기존 유형 매칭표 보기';
+  renderMap();
+});
+function pickFromMap(e){
+  const tr = e.target.closest('tr[data-id]'); if (!tr) return;
+  if (e.type === 'keydown' && e.key !== 'Enter') return;
+  state.styleId = tr.dataset.id; save(); renderGrid(); renderOutput();
+  document.querySelector(`.style[data-id="${tr.dataset.id}"]`)?.scrollIntoView({behavior:'smooth', block:'center'});
+}
+$('mapBody').addEventListener('click', pickFromMap);
+$('mapBody').addEventListener('keydown', pickFromMap);
+$('copyBefore').addEventListener('click', () => copy(current().before || ''));
+
+renderGrid(); renderRefs(); renderOutput();
+db.get('refs').then(v => { if (Array.isArray(v) && v.length) { refs = v.slice(0, MAX_REFS); renderRefs(); renderOutput(); } }).catch(() => {});
+</script>
+</body>
+</html>
