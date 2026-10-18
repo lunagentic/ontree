@@ -51,8 +51,8 @@ window.STYLES = [
   "old": "crayon",
   "id": "crayon",
   "before": "왁스 크레용으로 직접 그린 손그림. 굵고 거친 획의 방향과 겹침이 보이며, 종이 결에 걸려 색이 채워지지 않은 작은 틈과 부스러기 같은 입자감을 드러낸다. 윤곽선과 채색 가장자리에는 자연스러운 획의 흔들림을 남긴다. 물감 번짐, 매끈한 그라데이션, 균일한 벡터 색면, 3D 광택은 사용하지 않는다",
-  "after": "Soft and charming wax crayon illustration for young children, gentle evenly layered crayon strokes, fine subtle wax texture, smooth rounded hand-drawn outlines, friendly proportions, fully and neatly filled colors with soft blending, warm cheerful pastel-bright palette, cozy picture-book feel. Avoid harsh scratchy strokes, heavy grain, messy scribbles, large paper gaps and polished vector fills.",
-  "after_ko": "어린이를 위한 부드럽고 사랑스러운 크레용 일러스트. 고르게 겹쳐 칠한 크레용 획, 은은하고 고운 왁스 질감, 매끄럽고 둥근 손그림 윤곽, 친근한 비율, 빈틈없이 깔끔하게 채운 색과 부드러운 색 섞임, 따뜻하고 밝은 파스텔 색감으로 포근한 그림책 느낌을 살린다. 거칠게 긁힌 획, 두드러진 알갱이, 지저분한 낙서, 넓게 비는 종이, 매끈한 벡터 채색은 피한다.",
+  "after": "Cheerful children's wax crayon illustration, bright saturated primary colors, visible directional crayon strokes with soft wax texture, main characters drawn with clean rounded outlines and solidly filled colors, lively loosely scribbled crayon sky, grass and flowers in the background, smiling sun with crayon rays, warm joyful kindergarten-picture feel. Avoid harsh scratchy strokes on the characters, heavy grain, large empty paper gaps, pastel washes and polished vector fills.",
+  "after_ko": "밝고 즐거운 어린이 크레용 그림. 선명한 고채도 원색, 방향이 보이는 크레용 획과 부드러운 왁스 질감을 살린다. 주인공은 둥글고 깔끔한 윤곽에 색을 꽉 채워 칠하고, 하늘·풀·꽃 같은 배경은 크레용으로 자유롭게 쓱쓱 칠한 느낌으로 표현한다. 빛살이 있는 웃는 해, 따뜻하고 신나는 유치원 그림 분위기. 주인공에 거칠게 긁힌 획, 두드러진 알갱이, 넓게 비는 종이, 파스텔 물감 느낌, 매끈한 벡터 채색은 피한다.",
   "images": [
    {
     "src": "images/04_crayon.png",
@@ -156,8 +156,8 @@ window.STYLES = [
   "old": "cartoon",
   "id": "kawaii_character",
   "before": "굵고 또렷한 검은 윤곽선과 선명한 평면 채색의 2D 카툰. 형태를 읽기 쉽게 단순화하고 적은 수의 명암 면으로 표현하며 선의 굵기와 리듬을 강조한다. 대상의 고유한 특징과 신체 구조를 유지하고 표정 과장은 사용자 요청에 있을 때만 적용한다. 원래 없는 얼굴이나 팔다리를 추가하지 않는다. 실사 질감, 부드러운 3D 명암, 물감 번짐은 사용하지 않는다",
-  "after": "Adorable kawaii character illustration, rounded proportions, large head and compact body where appropriate, simple expressive facial features only when requested, rosy cheeks, thick clean outlines, pastel flat colors, minimal shading, uncluttered sticker-like composition.",
-  "after_ko": "사랑스러운 카와이 캐릭터. 큰 머리와 작은 몸, 둥근 형태, 간단하고 풍부한 표정, 분홍 볼, 깔끔하고 두꺼운 윤곽선, 부드러운 파스텔 평면 채색을 사용한다. 복잡한 해부학적 묘사와 사실적 질감은 피한다.",
+  "after": "Cute kawaii pixel art illustration, chunky low-resolution square pixels with clearly visible stepped edges, simple 8-bit style character with warm brown pixel outlines, tiny square eyes, pink pixel blush cheeks, soft muted pastel palette of cream, peach, coral, teal and leaf green, simple pixel flowers, grass and twinkling star sparkles, gentle watercolor-paper texture over the whole image. Avoid smooth vector curves, high-resolution detail, glossy 3D rendering and photorealism.",
+  "after_ko": "귀여운 카와이 픽셀아트. 계단식 가장자리가 또렷이 보이는 큼직한 저해상도 정사각 픽셀, 따뜻한 갈색 픽셀 윤곽의 단순한 8비트 캐릭터, 작은 네모 눈과 분홍 픽셀 볼터치를 사용한다. 크림·복숭아·코랄·청록·잎사귀색의 차분한 파스텔 색감, 단순한 픽셀 꽃·풀·반짝이는 별 장식, 화면 전체에 은은한 수채 종이 질감을 입힌다. 매끈한 벡터 곡선, 고해상도 디테일, 광택 3D, 실사 표현은 피한다.",
   "images": [
    {
     "src": "images/11_kawaii_character.png",
@@ -171,8 +171,8 @@ window.STYLES = [
   "old": "",
   "id": "anorak_editorial",
   "before": "기존 프롬프트 없음 — 신규 스타일",
-  "after": "Original contemporary children’s editorial illustration with nostalgic outdoor adventure aesthetics, chunky friendly silhouettes, bold simplified objects, slightly irregular contours, turquoise, forest green, cobalt, coral, butter yellow and cream, subtle vintage screen-print texture, asymmetrical preschool activity-book composition. Avoid brand imitation, photorealism and glossy 3D.",
-  "after_ko": "키즈 활동북을 위한 현대적 에디토리얼 일러스트. 아웃도어 모험 감성, 대담하고 단순한 동물·사물 실루엣, 약간 불규칙한 손그림 윤곽, 청록·숲색·코발트·코랄·노랑·크림 색상, 은은한 빈티지 인쇄 질감을 사용한다. 특정 브랜드를 복제하지 않는다.",
+  "after": "Charming hand-drawn children's illustration in crayon and colored pencil, warm brown slightly wobbly outlines, soft pencil-shaded fills, rosy blush cheeks, loose diagonal sky-blue crayon strokes in the background, simple doodled sun with ray lines, bright green grass strokes and simple flowers, white paper background with visible drawing-paper texture, sweet picture-diary feel. Avoid thick black outlines, flat vector fills, screen-print texture, glossy 3D and photorealism.",
+  "after_ko": "크레용과 색연필로 그린 사랑스러운 손그림 일러스트. 살짝 흔들리는 따뜻한 갈색 윤곽선, 연필로 부드럽게 칠한 채색, 분홍 볼터치를 사용한다. 배경은 하늘색 크레용을 사선으로 가볍게 칠하고, 빛살을 선으로 그린 단순한 해, 초록 풀 획과 간단한 꽃을 넣는다. 종이 질감이 보이는 흰 바탕으로 그림일기 같은 다정한 느낌을 살린다. 굵은 검정 윤곽선, 평면 벡터 채색, 인쇄 질감, 광택 3D, 실사 표현은 피한다.",
   "images": [
    {
     "src": "images/12_anorak_editorial.png",
@@ -186,8 +186,8 @@ window.STYLES = [
   "old": "clay",
   "id": "clay",
   "before": "실제 점토로 빚은 모형처럼 표현하는 3D 클레이. 대상의 두께와 부피가 분명하고, 표면에는 손으로 누른 미세한 자국과 점토를 붙인 이음새가 보인다. 무광 점토 재질과 부드러운 조명으로 대상 표면의 입체 명암을 표현한다. 검은 그림 윤곽선, 종이 결, 붓 자국, 금속·유리·플라스틱 같은 광택은 사용하지 않는다",
-  "after": "Handcrafted modeling-clay illustration, tactile hand-molded figures, subtle fingerprints, thumb impressions, uneven sculpted edges, visible seams, organic thickness, matte clay surfaces, miniature stop-motion set aesthetic, warm soft studio light. Avoid perfectly smooth CGI and glossy plastic.",
-  "after_ko": "손으로 직접 빚은 미니어처 클레이. 미세한 지문, 점토 이음새, 불규칙한 가장자리와 두께, 무광의 실제 점토 재질, 스톱모션 소품 같은 따뜻한 수공예 분위기를 표현한다. 지나치게 매끈한 플라스틱 CGI는 피한다.",
+  "after": "Handmade needle-felted wool figure, soft fuzzy felt surface with fine visible wool fibers, plump rounded handcrafted toy proportions, warm peach, coral and pink tones with gentle color gradation in the wool, small glossy black bead eyes, rosy felted cheeks, soft diffused studio lighting, clean plain cream or white background, cozy tactile handmade-toy feel. Avoid smooth plastic or clay surfaces, fingerprints, glossy CGI, realistic animal fur and harsh shadows.",
+  "after_ko": "손으로 만든 니들펠트 양모 인형. 가는 양모 섬유가 보이는 보송보송한 펠트 표면, 통통하고 둥근 수공예 인형 비율을 표현한다. 복숭아·코랄·분홍 계열이 양모 안에서 은은하게 이어지는 색감, 작고 반짝이는 검정 구슬 눈, 펠트로 표현한 분홍 볼을 사용한다. 부드럽게 퍼지는 스튜디오 조명과 깔끔한 크림색·흰색 배경으로 포근한 핸드메이드 인형 느낌을 살린다. 매끈한 플라스틱이나 점토 표면, 지문 자국, 광택 CGI, 사실적인 동물 털, 짙은 그림자는 피한다.",
   "images": [
    {
     "src": "images/13_clay.png",
@@ -239,8 +239,8 @@ window.STYLES = [
   "old": "",
   "id": "korean_minhwa",
   "before": "신규 스타일",
-  "after": "Korean traditional minhwa folk art illustration, decorative patterns, vibrant traditional Korean colors, charming symbolic animals and plants, flat perspective, bold yet graceful hand-painted outlines, traditional mineral pigment texture, stylized clouds, flowers and natural motifs, playful folk painting composition, child-friendly Korean cultural illustration. Avoid Japanese ukiyo-e aesthetics, Chinese imperial painting motifs, photorealism and glossy digital 3D rendering.",
-  "after_ko": "한국 전통 민화풍 어린이 일러스트. 상징적인 동식물, 전통적인 화려한 색감, 평면적 원근, 장식적인 꽃·구름·자연 문양, 부드럽고 대담한 손그림 윤곽과 전통 안료의 질감을 표현한다. 일본 우키요에·중국 궁중화 요소와 광택 3D는 피한다.",
+  "after": "Child-friendly Korean traditional minhwa folk painting, aged warm beige hanji paper background with faint stains and speckles, fine dark brown hand-painted outlines, soft muted earthy pigments of vermilion orange, celadon teal, deep leaf green and ochre, slightly faded patchy mineral-pigment coloring, symmetrical decorative peony-like flowers and leafy vines framing the subject, flat perspective, gentle smiling animal with rosy cheeks, nostalgic antique folk-art feel. Avoid bright saturated digital colors, Japanese ukiyo-e aesthetics, Chinese imperial painting motifs, photorealism and glossy 3D.",
+  "after_ko": "어린이를 위한 한국 전통 민화풍 그림. 얼룩과 작은 점이 은은하게 남은 오래된 베이지색 한지 바탕, 가늘고 짙은 갈색 붓 윤곽선을 사용한다. 주홍·청자색 청록·짙은 잎사귀색·황토의 차분하고 흙빛 도는 안료로, 살짝 바래고 얼룩진 듯한 전통 채색을 표현한다. 모란 같은 장식 꽃과 잎 덩굴이 주인공을 양옆에서 감싸고, 평면적 원근과 분홍 볼의 웃는 동물로 정겨운 옛 민화 느낌을 살린다. 선명한 고채도 디지털 색, 일본 우키요에·중국 궁중화 요소, 실사 표현, 광택 3D는 피한다.",
   "images": [
    {
     "src": "images/16_korean_minhwa.png",
