@@ -167,12 +167,12 @@ details.before .prompt{margin-top:6px}
 <header><div class="in">
   <div>
     <h1>스타일 마스터 검수</h1>
-    <p><span id="verDesc">18종</span> 스타일의 샘플 기준 프롬프트를 검수하고, 주제와 조합해 이미지 생성용 영문·한글 프롬프트를 만듭니다.</p>
+    <p><span id="verDesc">v1 시트 12종</span> 스타일의 샘플 기준 프롬프트를 검수하고, 주제와 조합해 이미지 생성용 영문·한글 프롬프트를 만듭니다.</p>
   </div>
   <div class="hright">
     <div class="ver" role="group" aria-label="스타일 버전">
-      <button type="button" data-ver="v1" aria-pressed="false">v1 시트</button>
-      <button type="button" data-ver="v2" aria-pressed="true">v2 시트</button>
+      <button type="button" data-ver="v1" aria-pressed="true">v1 시트</button>
+      <button type="button" data-ver="v2" aria-pressed="false">v2 시트</button>
     </div>
     <button class="btn hbtn" id="toggleMap" aria-expanded="false" aria-controls="mapping">기존 유형 매칭표 보기</button>
   </div>
@@ -263,16 +263,16 @@ details.before .prompt{margin-top:6px}
 <script src="styles.js"></script>
 <script src="styles_v1.js"></script>
 <script>
-// 스타일 버전: v1 = Google 시트(시트2) 15종, v2 = 현재 18종(v6.6)
+// 스타일 버전: v1 = Google 시트(시트2) 기준 (기본값), v2 = 이전 18종(v6.6)
 const VERSIONS = {v1: {label: 'v1 시트', list: window.STYLES_V1 || []}, v2: {label: 'v2 시트', list: window.STYLES}};
-let STYLES = VERSIONS.v2.list;
+let STYLES = VERSIONS.v1.list;
 const EXAMPLES = ['사과를 든 토끼','숲속을 걷는 곰','무지개와 구름','바닷속 물고기 친구들','해바라기 꽃밭','공룡 친구'];
 const STORE = 'kb_prompt_gen_v1';
 const $ = id => document.getElementById(id);
 
 let state = {subject:'', subjectEn:'', details:'', styleId: STYLES[0].id};
 try { Object.assign(state, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) {}
-if (!VERSIONS[state.version]) state.version = 'v2';
+if (!VERSIONS[state.version] || !state.versionChosen) state.version = 'v1';
 STYLES = VERSIONS[state.version].list;
 if (!STYLES.some(s => s.id === state.styleId)) state.styleId = STYLES[0].id;
 
@@ -640,7 +640,7 @@ function setVersion(v){
   document.title = `스타일 마스터 검수 · ${VERSIONS[v].label}`;
   save(); renderGrid(); renderOutput(); renderCards();
 }
-document.querySelector('.ver').addEventListener('click', e => { if (e.target.dataset.ver) setVersion(e.target.dataset.ver); });
+document.querySelector('.ver').addEventListener('click', e => { if (e.target.dataset.ver) { state.versionChosen = true; setVersion(e.target.dataset.ver); } });
 
 renderRefs(); setVersion(state.version); setView(state.view === 'gen' ? 'gen' : 'cards');
 db.get('hidden').then(v => { if (v && typeof v === 'object') { hidden = v; renderCards(); } }).catch(() => {});
