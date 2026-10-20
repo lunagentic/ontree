@@ -15,6 +15,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_nordic_kids_penguin.png",
     "label": "레퍼런스 2"
+   },
+   {
+    "src": "images/v1_nordic_kids_broccoli.png",
+    "label": "레퍼런스 3"
    }
   ]
  },
@@ -168,6 +172,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_doodle_food_top.png",
     "label": "레퍼런스 3 · 과일·생선"
+   },
+   {
+    "src": "images/v1_doodle_otter.png",
+    "label": "레퍼런스 4"
    }
   ]
  },
