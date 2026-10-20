@@ -201,6 +201,7 @@ details.before .prompt{margin-top:6px}
     <input type="search" id="cardSearch" placeholder="스타일명 / ID 검색" aria-label="스타일 카드 검색">
     <button class="btn" id="copyAllEn"><span class="cnt">18</span>종 영문 프롬프트 복사</button>
     <button class="btn secondary" id="copyAllKo"><span class="cnt">18</span>종 한글 프롬프트 복사</button>
+    <button class="btn" id="syncUp" hidden>이 브라우저의 추가 이미지·순서 저장소로 보내기</button>
   </div>
   <p class="hint">신규 프롬프트는 각 스타일의 샘플(레퍼런스) 이미지를 기준으로 작성했고, 기존 프롬프트는 이전 스타일 파일의 내용입니다. 추가하거나 삭제한 이미지는 이 브라우저에만 저장됩니다. 카드 이미지의 ×로 삭제하고, 숨긴 샘플은 복원할 수 있습니다. 이미지를 좌우로 끌면 순서가 바뀌고 첫 이미지가 대표 썸네일이 됩니다.</p>
   <div class="cards" id="cards"></div>
@@ -265,7 +266,7 @@ details.before .prompt{margin-top:6px}
 <script src="styles.js"></script>
 <script src="styles_v1.js"></script>
 <script>
-// 스타일 버전: v1 = Google 시트(시트2) 기준 (기본값), v2 = 이전 18종(v6.6) 중 9종
+// 스타일 버전: v1 = Google 시트(시트2) 기준 (기본값), v2 = 이전 18종(v6.6) 중 8종
 const VERSIONS = {v1: {label: 'v1 시트', list: window.STYLES_V1 || []}, v2: {label: 'v2 시트', list: window.STYLES}};
 let STYLES = VERSIONS.v1.list;
 const EXAMPLES = ['사과를 든 토끼','숲속을 걷는 곰','무지개와 구름','바닷속 물고기 친구들','해바라기 꽃밭','공룡 친구'];
@@ -641,6 +642,43 @@ $('cards').addEventListener('click', e => {
 $('cardSearch').addEventListener('input', renderCards);
 $('copyAllEn').addEventListener('click', () => copy(STYLES.map(s => `## ${pad(s.n)} ${s.name} (${s.id})\n${s.after}`).join('\n\n')));
 $('copyAllKo').addEventListener('click', () => copy(STYLES.map(s => `${pad(s.n)}. ${s.name} (${s.id})\n${s.after_ko}`).join('\n\n')));
+
+// Claude 아티팩트 화면에서만: 이 브라우저에 추가한 이미지와 순서·숨김을 아티팩트 저장소로 보내 저장소(repo)에 옮길 수 있게 한다
+(async () => {
+  if (!window.claude?.use) return;
+  const [assets, dbc] = await Promise.all([claude.use('assets').catch(() => null), claude.use('db').catch(() => null)]);
+  if (!assets || !dbc) return;
+  $('syncUp').hidden = false;
+  $('syncUp').addEventListener('click', async () => {
+    const btn = $('syncUp'); btn.disabled = true;
+    let sent = 0, failed = 0;
+    try {
+      for (const [v, def] of Object.entries(VERSIONS)) {
+        for (const s of def.list) {
+          const key = v === 'v1' ? 'v1:' + s.id : s.id;
+          const list = custom[key] || [];
+          for (let i = 0; i < list.length; i++) {
+            const c = list[i]; customId(c);
+            try {
+              if (!c.assetId) {
+                const blob = await (await fetch(c.data)).blob();
+                const up = await assets.upload(blob);
+                c.assetId = up.id; saveCustom();
+              }
+              await dbc.doc('submissions/' + c.id).set({version: v, styleId: s.id, styleName: s.name, label: c.name || '', assetId: c.assetId, index: i, sentAt: new Date().toISOString()});
+              sent++;
+            } catch (e) { failed++; console.warn('sync failed', s.id, e); }
+          }
+          const ord = order[key], hid = hidden[key];
+          if ((ord && ord.length) || (hid && hid.length)) {
+            try { await dbc.doc('layout/' + v + '__' + s.id).set({version: v, styleId: s.id, order: ord || [], hidden: hid || []}); } catch (e) { console.warn('layout sync failed', s.id, e); }
+          }
+        }
+      }
+      status(failed ? `이미지 ${sent}장을 보냈고 ${failed}장은 실패했습니다.` : `이미지 ${sent}장과 순서·숨김 정보를 보냈습니다. Claude에게 저장소에 반영해 달라고 말해 주세요.`);
+    } finally { btn.disabled = false; }
+  });
+})();
 
 // 탭: 스타일 카드 / 프롬프트 생성
 function setView(v){
