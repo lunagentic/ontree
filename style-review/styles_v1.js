@@ -37,7 +37,16 @@ window.STYLES_V1 = [
   "id": "texture_collage",
   "after": "Handmade mixed-media texture collage, layered cut and torn paper, cardboard, fabric scraps and printed textures, visible fibers, irregular scissor-cut edges, overlapping opaque shapes, distinct tactile surfaces and subtle layer shadows. Avoid smooth vectors and glossy CGI.",
   "after_ko": "종이·천·골판지를 오려 붙인 수공예 질감 콜라주. 찢어진 종이 결, 불규칙한 가위질 가장자리, 서로 다른 재료 표면, 겹친 색면과 은은한 층 그림자를 표현한다. 매끈한 벡터 표면과 광택 있는 CGI는 피한다.",
-  "images": []
+  "images": [
+   {
+    "src": "images/v1_texture_collage_sun.jpg",
+    "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_texture_collage_santa.jpg",
+    "label": "레퍼런스 2"
+   }
+  ]
  },
  {
   "n": 4,
