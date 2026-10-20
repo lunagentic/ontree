@@ -1,4 +1,4 @@
-// 킨더보드 이미지 스타일 v1 데이터 (Google 시트 '시트2' 기준, 15종)
+// 킨더보드 이미지 스타일 v1 데이터 (Google 시트 '시트2' 기준, 13종)
 // 원본: https://docs.google.com/spreadsheets/d/1ycD9z50fKwnIBtImLeykIEh9esSHTfJgP4CfimKvRlc (시트2)
 window.STYLES_V1 = [
  {
@@ -86,9 +86,8 @@ window.STYLES_V1 = [
   "n": 7,
   "name": "파스텔 그림책",
   "id": "pastel_storybook",
-  "en_note": "시트에 영문이 없어 한국어를 번역해 넣었습니다.",
-  "after": "Bright, warm picture book illustration style for young children, soft pastel colors, rounded shapes, a simple clean background, one scene with a single subject, nothing scary for young children, and absolutely no letters, numbers or text in the image. Keep the subject's whole body inside the frame, from the top of the head to the feet (or the bottom of an object), with generous space from every edge so nothing is cropped. In particular, place the subject slightly smaller with space under the feet so the bottom does not touch the frame (no close-ups or heavy zoom).",
-  "after_ko": "밝고 따뜻한 유아 그림책 일러스트 스타일, 부드러운 파스텔 색감, 둥근 형태, 단순하고 깔끔한 배경, 한 장면·단일 주제, 유아가 무서워할 요소 없음, 이미지 안에 글자·숫자·문자 절대 없음. 주인공(아이·인물·동물·사물)은 몸 전체가 프레임 안에 온전히 들어오게 그린다 — 머리 끝부터 발끝(또는 사물의 맨 아래)까지 다 보이게 하고, 화면 위·아래·양옆 가장자리에서 넉넉히 떨어뜨려 어느 방향으로도 잘리지 않게 한다. 특히 아래쪽이 프레임에 닿아 발·다리·하단이 잘리지 않도록 주체를 약간 작게 배치하고 발밑에 여백을 둔다(클로즈업·과한 확대 금지).",
+  "after": "A calm, muted flat vector picture book illustration. Every shape is a flat solid color area with no outlines, rounded and simplified with minimal detail. Use a soft, desaturated pastel palette of sage green, mustard, coral, dusty blue and cream, with a very fine subtle grain texture inside the color areas. Almost no shading; where needed, a shadow is a single slightly darker tone of the same color. Characters have round heads, simple bodies, small dot eyes and a simple smile. Backgrounds layer simple decorative leaves, trees and grass while keeping generous open space. One scene with a single subject, nothing scary for young children, and absolutely no letters, numbers or text in the image. Keep the subject's whole body inside the frame, well away from every edge, so nothing is cropped. No gradients, no realistic shading, no gloss, no black outlines.",
+  "after_ko": "차분한 색감의 플랫 벡터 그림책 일러스트. 모든 형태는 외곽선 없이 평평한 단색 면으로 만들고, 둥글고 단순하게 정리하며 디테일은 최소화한다. 세이지 그린, 머스터드, 코랄, 더스티 블루, 크림처럼 채도를 낮춘 부드러운 파스텔 팔레트를 쓰고, 색면 안에 아주 고운 입자 질감을 살짝 넣는다. 명암은 거의 없고, 필요하면 같은 색의 살짝 진한 톤 한 단계로만 그림자를 표현한다. 캐릭터는 둥근 머리와 단순한 몸, 작은 점 눈과 단순한 미소를 가진다. 배경은 단순한 잎·나무·풀 같은 장식 요소를 겹쳐 두되 넓은 여백을 남긴다. 한 장면·단일 주제, 유아가 무서워할 요소 없음, 이미지 안에 글자·숫자·문자 절대 없음. 주인공은 몸 전체가 프레임 안에 온전히 들어오게 그리고, 화면 가장자리에서 넉넉히 떨어뜨려 어느 방향으로도 잘리지 않게 한다. 그라데이션, 사실적 명암, 광택, 검정 외곽선은 쓰지 않는다.",
   "images": []
  },
  {
@@ -153,22 +152,6 @@ window.STYLES_V1 = [
  },
  {
   "n": 12,
-  "name": "핸드메이드 클레이 피규어",
-  "id": "handmade_clay_figure",
-  "after": "A photograph-style illustration of a handmade clay figurine. The character is sculpted with a rounded, chubby body, short limbs and simple shapes, with small dot eyes and faint pink cheek blush. Surfaces have a matte clay texture with visible fingerprints, subtle lumps and slightly uneven edges. Props and accessories such as hats are sculpted from the same clay in simple, chunky forms. Use warm, vivid colors such as cream, orange, red, blue and green. Warm natural side lighting creates soft shadows, and a shallow depth of field gently blurs the background. No smooth CG finish, no strong gloss, no realistic animal anatomy, no text.",
-  "after_ko": "손으로 빚은 점토 피규어를 촬영한 듯한 사진풍 일러스트. 캐릭터는 둥글고 통통한 몸, 짧은 팔다리, 단순한 형태로 빚어지고, 작은 점 눈과 옅은 분홍 볼터치로 표정을 만든다. 표면은 무광 점토 질감으로, 손자국과 미세한 울퉁불퉁함, 살짝 고르지 않은 가장자리가 보인다. 소품과 모자 같은 장식도 같은 점토로 단순하고 두툼하게 빚는다. 크림, 주황, 빨강, 파랑, 초록처럼 따뜻하고 선명한 색을 쓴다. 따뜻한 자연광이 옆에서 비추고, 부드러운 그림자와 얕은 피사계 심도로 배경이 부드럽게 흐려진다. 매끈한 CG 질감, 강한 광택, 사실적인 동물 묘사, 글자는 쓰지 않는다.",
-  "images": []
- },
- {
-  "n": 13,
-  "name": "플레이풀 포즈 애니멀",
-  "id": "playful_pose_animals",
-  "after": "A playful, cheerful children's animal illustration. Animals strike exaggerated, humanlike and funny poses, such as stretching a leg, lounging on their back or twisting their body. Bodies are rounded and flexible, with long, bendy limbs. Bold, unexpected colors are used freely, like a pink cat, a green gorilla or a purple sheep. Shapes are painted in flat solid colors without outlines, and only some details like toes, folds and fur strokes are drawn with thin, dark brush-pen lines. Bodies are decorated with dots, short dashes, stripes or checks. Faces are simple, with small dot eyes or closed curved eyes, pink cheek blush and a small smile. Color areas have a very subtle hand-drawn texture. No gradients, no realistic shading, no realistic proportions, no gloss, no thick outlines, no text.",
-  "after_ko": "장난스럽고 유쾌한 어린이 동물 일러스트. 동물들은 다리를 뻗거나 드러눕거나 몸을 비트는 등 사람처럼 과장되고 엉뚱한 포즈를 취한다. 몸통은 둥글고 유연하며 팔다리는 길쭉하게 휘어진다. 분홍 고양이, 초록 고릴라, 보라 양처럼 실제와 다른 선명한 색을 과감하게 쓴다. 형태는 외곽선 없이 평평한 단색 면으로 칠하고, 발끝·주름·털결 같은 일부 디테일에만 가늘고 어두운 붓펜 선을 쓴다. 점, 짧은 대시, 줄무늬, 체크무늬로 몸을 장식한다. 얼굴은 작은 점 눈이나 감은 눈 곡선, 분홍 볼터치, 작은 미소로 단순하게 표현한다. 색면에는 아주 옅은 손그림 질감이 있다. 그라데이션, 사실적 명암, 사실적 비율, 광택, 굵은 외곽선, 글자는 쓰지 않는다.",
-  "images": []
- },
- {
-  "n": 14,
   "name": "크레용 지오메트릭",
   "id": "crayon_geometric",
   "after": "A playful, quirky children's picture book illustration. Each animal's body is boldly reduced to one large simple shape such as a half circle, triangle, dome or rounded rectangle, with thin short stick legs and humorously exaggerated snouts or tails. Eyes are two small black dots set close together, with small round red or pink cheek blush and a dot nose. Main shapes have no outlines and are painted in flat solid colors; only details like legs, whiskers, tentacles and fur strokes are drawn with thin, dark, hand-drawn lines. Bodies carry simple patterns of short dashes, dots, curly scribbles, grids or stripes. Every color area has a fine crayon or colored-pencil grain texture. Use mainly cobalt blue, red, orange, pink, lavender and mustard yellow, with white and black only as accents. No gradients, no realistic shading, no realistic proportions, no gloss, no thick outlines, no text.",
@@ -181,7 +164,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 15,
+  "n": 13,
   "name": "카와이 두들",
   "id": "kawaii_doodle",
   "after": "A kawaii doodle sticker illustration for children. Objects and characters are simplified into rounded, chubby shapes painted in bright flat colors, with smooth, even outlines in a darker shade of each fill color; black is used only for small parts like tires. A small face sits close together inside a window or a light-colored panel. The eyes are two tiny vertical oval black dots set wide apart, each with one very small white highlight dot near the top. For a wink, one eye is a short chevron (>) line. The mouth is a very small open rounded half-moon shape in red or coral, or a short curve, placed below and between the eyes. Small soft pink oval blush sits just below and outside each eye. No nose and no eyebrows. Glass has two short white diagonal reflection strokes. A few small decorations are scattered loosely around the subject: tiny cross-shaped sparkles, small circles, wavy squiggles, motion lines or puffs of steam. Use bright, clear yellow, orange, sky blue, blue, green and purple on a white background. No gradients, no realistic shading, no texture, no big eyes, no eyelashes, no text.",
