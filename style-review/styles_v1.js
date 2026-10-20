@@ -50,23 +50,6 @@ window.STYLES_V1 = [
  },
  {
   "n": 4,
-  "name": "한국 전통 민화풍",
-  "id": "korean_minhwa",
-  "after": "Child-friendly Korean traditional minhwa folk painting, aged warm beige hanji paper background with faint stains and speckles, fine dark brown hand-painted outlines, soft muted earthy pigments of vermilion orange, celadon teal, deep leaf green and ochre, slightly faded patchy mineral-pigment coloring, symmetrical decorative peony-like flowers and leafy vines framing the subject, flat perspective, gentle smiling animal with rosy cheeks, nostalgic antique folk-art feel. Avoid bright saturated digital colors, Japanese ukiyo-e aesthetics, Chinese imperial painting motifs, photorealism and glossy 3D.",
-  "after_ko": "어린이를 위한 한국 전통 민화풍 그림. 얼룩과 작은 점이 은은하게 남은 오래된 베이지색 한지 바탕, 가늘고 짙은 갈색 붓 윤곽선을 사용한다. 주홍·청자색 청록·짙은 잎사귀색·황토의 차분하고 흙빛 도는 안료로, 살짝 바래고 얼룩진 듯한 전통 채색을 표현한다. 모란 같은 장식 꽃과 잎 덩굴이 주인공을 양옆에서 감싸고, 평면적 원근과 분홍 볼의 웃는 동물로 정겨운 옛 민화 느낌을 살린다. 선명한 고채도 디지털 색, 일본 우키요에·중국 궁중화 요소, 실사 표현, 광택 3D는 피한다.",
-  "images": [
-   {
-    "src": "images/v1_korean_minhwa.png",
-    "label": "레퍼런스"
-   },
-   {
-    "src": "images/v1_korean_minhwa_tiger.png",
-    "label": "레퍼런스 2"
-   }
-  ]
- },
- {
-  "n": 5,
   "name": "픽사풍 3D 디테일 (기본값)",
   "id": "pixar_3d_detail",
   "en_note": "시트에 영문이 없어 한국어를 번역해 넣었습니다.",
@@ -75,7 +58,7 @@ window.STYLES_V1 = [
   "images": []
  },
  {
-  "n": 6,
+  "n": 5,
   "name": "파스텔 그림책",
   "id": "pastel_storybook",
   "after": "A calm, muted flat vector picture book illustration. Every shape is a flat solid color area with no outlines, rounded and simplified with minimal detail. Use a soft, desaturated pastel palette of sage green, mustard, coral, dusty blue and cream, with a very fine subtle grain texture inside the color areas. Almost no shading; where needed, a shadow is a single slightly darker tone of the same color. Characters have round heads, simple bodies, small dot eyes and a simple smile. Backgrounds layer simple decorative leaves, trees and grass while keeping generous open space. One scene with a single subject, nothing scary for young children, and absolutely no letters, numbers or text in the image. Keep the subject's whole body inside the frame, well away from every edge, so nothing is cropped. No gradients, no realistic shading, no gloss, no black outlines.",
@@ -88,7 +71,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 7,
+  "n": 6,
   "name": "판화",
   "id": "printmaking",
   "after": "A mid-century modern children's picture book illustration made as a screen print and risograph print. The image is built from transparent ink layers, as if each color were printed separately on top of the others. Shapes intentionally overlap, and wherever they overlap the two inks multiply into a darker third color: a teal leaf over yellow becomes deep green, pink over mint becomes a muted plum. The color layers show slight misregistration. Each character or object is one large, simple silhouette printed flat in a single main color, with rounded, simplified, exaggerated shapes. Edges are formed by the color shapes themselves, not by lines. Use only four to five inks from teal, coral red, mustard yellow, soft pink and mint, on a warm cream paper background. Every color area has fine print grain, and some areas carry halftone dots or simple repeating patterns printed as a separate layer. Faces have dot eyes, round cheek blush and a simple smile, with black ink used only for eyes and tiny details. No opaque painted fills, no patchwork of multicolored blocks, no outlines, no gradients, no realistic shading, no text.",
@@ -105,7 +88,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 8,
+  "n": 7,
   "name": "유아용 보드북",
   "id": "board_book",
   "after": "A children's board book illustration. Characters have simple rounded proportions with a large head and a short, chubby body. Eyes are big round white circles with large dark pupils and a few short eyelash strokes. Cheeks have large round coral or pink blush, the mouth is a simple curved smile, and the nose is a small dot or short curve. All shapes are painted in flat solid colors with almost no shading, and hair or fur texture is shown only with a few lighter strokes. Every color area has a fine crayon or colored-pencil grain texture. No thick outlines; thin lines are used only for small details like whiskers and eyelashes. Use bright, warm colors such as cobalt blue, sunny yellow, tomato red, lavender and mint. No gradients, no airbrushed shading, no glossy highlights, no white sticker border, no text.",
@@ -122,7 +105,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 9,
+  "n": 8,
   "name": "플랫 벡터 아이콘",
   "id": "flat_vector_icon",
   "after": "A flat vector icon sticker illustration for children. Each object is reduced to its most recognizable simple, rounded silhouette. It is painted in two to four clean, flat solid colors, with only minimal details such as a few dots, short lines or small patterns. Almost no shading; at most a single light highlight stroke. If a face is included, it has only dot eyes and a simple curved smile. Use bright, saturated reds, oranges, yellows, greens and blues. The whole object is surrounded by an even, solid white die-cut sticker border. No texture, no gradients, no realistic shading, no black outlines, no text.",
@@ -135,7 +118,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 10,
+  "n": 9,
   "name": "파스텔 클레이 3D",
   "id": "pastel_clay_3d",
   "after": "A soft pastel 3D illustration. Every form is a simple, rounded, puffy shape that looks sculpted from clay or matte plastic, with minimal detail. Surfaces are smooth and matte with no glossy reflections. Soft diffused light from the upper front gives gentle shading, with only a faint, soft contact shadow where objects touch the ground. Use low-saturation pastel colors such as sage green, blush pink, peach, butter yellow and lilac, keeping contrast low and calm. If there is a character, it has a rounded body, a large head, small dot eyes and subtle cheek blush. No realistic textures, no strong gloss, no hard shadows, no high saturation, no text.",
@@ -143,6 +126,19 @@ window.STYLES_V1 = [
   "images": [
    {
     "src": "images/v1_pastel_clay_3d.png",
+    "label": "레퍼런스"
+   }
+  ]
+ },
+ {
+  "n": 10,
+  "name": "두들 캐릭터",
+  "id": "doodle_character",
+  "after": "A kawaii doodle sticker illustration for children. Objects and characters are simplified into rounded, chubby shapes painted in bright flat colors, with smooth, even outlines in a darker shade of each fill color; black is used only for small parts like tires. A small face sits close together inside a window or a light-colored panel. The eyes are two tiny vertical oval black dots set wide apart, each with one very small white highlight dot near the top. For a wink, one eye is a short chevron (>) line. The mouth is a very small open rounded half-moon shape in red or coral, or a short curve, placed below and between the eyes. Small soft pink oval blush sits just below and outside each eye. No nose and no eyebrows. Glass has two short white diagonal reflection strokes. A few small decorations are scattered loosely around the subject: tiny cross-shaped sparkles, small circles, wavy squiggles, motion lines or puffs of steam. Use bright, clear yellow, orange, sky blue, blue, green and purple on a white background. No gradients, no realistic shading, no texture, no big eyes, no eyelashes, no text.",
+  "after_ko": "어린이를 위한 카와이 두들 스티커 일러스트. 사물과 캐릭터는 둥글고 통통하게 단순화하고, 밝은 평면 색으로 칠한 뒤 같은 색 계열의 진한 톤으로 둥글고 일정한 굵기의 외곽선을 그린다. 바퀴처럼 작은 부분만 검정을 쓴다. 얼굴은 창문이나 밝은 면 안에 작게 모아 그린다. 눈은 작은 세로 타원형 검은 점 두 개를 서로 넓게 떨어뜨려 놓고, 각 눈 위쪽에 아주 작은 흰 하이라이트 점을 하나씩 넣는다. 윙크할 때는 한쪽 눈을 짧은 꺾쇠(>) 선으로 그린다. 입은 두 눈 사이 아래에 빨강·코랄색으로 아주 작게 벌린 둥근 반달 모양이나 짧은 곡선으로 그린다. 눈 바깥쪽 아래에 작고 부드러운 분홍 타원 볼터치를 넣고, 코와 눈썹은 그리지 않는다. 유리에는 짧은 흰 사선 반사광 두 줄을 넣는다. 주변에는 작은 십자 반짝이, 동그라미, 물결 낙서, 움직임 선, 김 같은 장식을 몇 개만 여유 있게 흩어 놓는다. 노랑, 주황, 하늘색, 파랑, 초록, 보라 같은 밝고 선명한 색을 쓰고 흰 배경에 둔다. 그라데이션, 사실적 명암, 질감, 큰 눈, 속눈썹, 글자는 쓰지 않는다.",
+  "images": [
+   {
+    "src": "images/v1_kawaii_doodle.png",
     "label": "레퍼런스"
    }
   ]
@@ -162,14 +158,18 @@ window.STYLES_V1 = [
  },
  {
   "n": 12,
-  "name": "두들 캐릭터",
-  "id": "doodle_character",
-  "after": "A kawaii doodle sticker illustration for children. Objects and characters are simplified into rounded, chubby shapes painted in bright flat colors, with smooth, even outlines in a darker shade of each fill color; black is used only for small parts like tires. A small face sits close together inside a window or a light-colored panel. The eyes are two tiny vertical oval black dots set wide apart, each with one very small white highlight dot near the top. For a wink, one eye is a short chevron (>) line. The mouth is a very small open rounded half-moon shape in red or coral, or a short curve, placed below and between the eyes. Small soft pink oval blush sits just below and outside each eye. No nose and no eyebrows. Glass has two short white diagonal reflection strokes. A few small decorations are scattered loosely around the subject: tiny cross-shaped sparkles, small circles, wavy squiggles, motion lines or puffs of steam. Use bright, clear yellow, orange, sky blue, blue, green and purple on a white background. No gradients, no realistic shading, no texture, no big eyes, no eyelashes, no text.",
-  "after_ko": "어린이를 위한 카와이 두들 스티커 일러스트. 사물과 캐릭터는 둥글고 통통하게 단순화하고, 밝은 평면 색으로 칠한 뒤 같은 색 계열의 진한 톤으로 둥글고 일정한 굵기의 외곽선을 그린다. 바퀴처럼 작은 부분만 검정을 쓴다. 얼굴은 창문이나 밝은 면 안에 작게 모아 그린다. 눈은 작은 세로 타원형 검은 점 두 개를 서로 넓게 떨어뜨려 놓고, 각 눈 위쪽에 아주 작은 흰 하이라이트 점을 하나씩 넣는다. 윙크할 때는 한쪽 눈을 짧은 꺾쇠(>) 선으로 그린다. 입은 두 눈 사이 아래에 빨강·코랄색으로 아주 작게 벌린 둥근 반달 모양이나 짧은 곡선으로 그린다. 눈 바깥쪽 아래에 작고 부드러운 분홍 타원 볼터치를 넣고, 코와 눈썹은 그리지 않는다. 유리에는 짧은 흰 사선 반사광 두 줄을 넣는다. 주변에는 작은 십자 반짝이, 동그라미, 물결 낙서, 움직임 선, 김 같은 장식을 몇 개만 여유 있게 흩어 놓는다. 노랑, 주황, 하늘색, 파랑, 초록, 보라 같은 밝고 선명한 색을 쓰고 흰 배경에 둔다. 그라데이션, 사실적 명암, 질감, 큰 눈, 속눈썹, 글자는 쓰지 않는다.",
+  "name": "한국 전통 민화풍",
+  "id": "korean_minhwa",
+  "after": "Child-friendly Korean traditional minhwa folk painting, aged warm beige hanji paper background with faint stains and speckles, fine dark brown hand-painted outlines, soft muted earthy pigments of vermilion orange, celadon teal, deep leaf green and ochre, slightly faded patchy mineral-pigment coloring, symmetrical decorative peony-like flowers and leafy vines framing the subject, flat perspective, gentle smiling animal with rosy cheeks, nostalgic antique folk-art feel. Avoid bright saturated digital colors, Japanese ukiyo-e aesthetics, Chinese imperial painting motifs, photorealism and glossy 3D.",
+  "after_ko": "어린이를 위한 한국 전통 민화풍 그림. 얼룩과 작은 점이 은은하게 남은 오래된 베이지색 한지 바탕, 가늘고 짙은 갈색 붓 윤곽선을 사용한다. 주홍·청자색 청록·짙은 잎사귀색·황토의 차분하고 흙빛 도는 안료로, 살짝 바래고 얼룩진 듯한 전통 채색을 표현한다. 모란 같은 장식 꽃과 잎 덩굴이 주인공을 양옆에서 감싸고, 평면적 원근과 분홍 볼의 웃는 동물로 정겨운 옛 민화 느낌을 살린다. 선명한 고채도 디지털 색, 일본 우키요에·중국 궁중화 요소, 실사 표현, 광택 3D는 피한다.",
   "images": [
    {
-    "src": "images/v1_kawaii_doodle.png",
+    "src": "images/v1_korean_minhwa.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_korean_minhwa_tiger.png",
+    "label": "레퍼런스 2"
    }
   ]
  }
