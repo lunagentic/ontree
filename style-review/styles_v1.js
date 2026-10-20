@@ -156,6 +156,14 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_kawaii_doodle.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_doodle_food_row.png",
+    "label": "레퍼런스 2 · 채소 캐릭터"
+   },
+   {
+    "src": "images/v1_doodle_food_top.png",
+    "label": "레퍼런스 3 · 과일·생선"
    }
   ]
  },
