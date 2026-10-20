@@ -1,4 +1,4 @@
-// 킨더보드 이미지 스타일 v1 데이터 (Google 시트 '시트2' 기준, 13종)
+// 킨더보드 이미지 스타일 v1 데이터 (Google 시트 '시트2' 기준, 12종)
 // 원본: https://docs.google.com/spreadsheets/d/1ycD9z50fKwnIBtImLeykIEh9esSHTfJgP4CfimKvRlc (시트2)
 window.STYLES_V1 = [
  {
@@ -50,14 +50,6 @@ window.STYLES_V1 = [
  },
  {
   "n": 4,
-  "name": "흑백 컬러링 라인아트",
-  "id": "coloring",
-  "after": "Printable black-and-white kindergarten coloring page, pure white background, clean solid black outlines, consistent medium line weight, large completely unfilled enclosed regions, simple recognizable shapes, spacious composition. No color, gray fill, shading, hatching, texture or large solid black areas.",
-  "after_ko": "유아가 직접 색칠할 수 있는 흑백 컬러링 도안. 순백색 배경, 일정한 굵기의 검정 윤곽선, 넓고 완전히 비어 있는 닫힌 색칠 영역, 알아보기 쉬운 단순 형태와 여유 있는 구도를 사용한다. 색상·회색 면·그림자·그라데이션·해칭은 넣지 않는다.",
-  "images": []
- },
- {
-  "n": 5,
   "name": "한국 전통 민화풍",
   "id": "korean_minhwa",
   "after": "Child-friendly Korean traditional minhwa folk painting, aged warm beige hanji paper background with faint stains and speckles, fine dark brown hand-painted outlines, soft muted earthy pigments of vermilion orange, celadon teal, deep leaf green and ochre, slightly faded patchy mineral-pigment coloring, symmetrical decorative peony-like flowers and leafy vines framing the subject, flat perspective, gentle smiling animal with rosy cheeks, nostalgic antique folk-art feel. Avoid bright saturated digital colors, Japanese ukiyo-e aesthetics, Chinese imperial painting motifs, photorealism and glossy 3D.",
@@ -74,7 +66,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 6,
+  "n": 5,
   "name": "픽사풍 3D 디테일 (기본값)",
   "id": "pixar_3d_detail",
   "en_note": "시트에 영문이 없어 한국어를 번역해 넣었습니다.",
@@ -83,7 +75,7 @@ window.STYLES_V1 = [
   "images": []
  },
  {
-  "n": 7,
+  "n": 6,
   "name": "파스텔 그림책",
   "id": "pastel_storybook",
   "after": "A calm, muted flat vector picture book illustration. Every shape is a flat solid color area with no outlines, rounded and simplified with minimal detail. Use a soft, desaturated pastel palette of sage green, mustard, coral, dusty blue and cream, with a very fine subtle grain texture inside the color areas. Almost no shading; where needed, a shadow is a single slightly darker tone of the same color. Characters have round heads, simple bodies, small dot eyes and a simple smile. Backgrounds layer simple decorative leaves, trees and grass while keeping generous open space. One scene with a single subject, nothing scary for young children, and absolutely no letters, numbers or text in the image. Keep the subject's whole body inside the frame, well away from every edge, so nothing is cropped. No gradients, no realistic shading, no gloss, no black outlines.",
@@ -91,7 +83,7 @@ window.STYLES_V1 = [
   "images": []
  },
  {
-  "n": 8,
+  "n": 7,
   "name": "판화",
   "id": "printmaking",
   "after": "A mid-century modern children's picture book illustration made as a screen print and risograph print. The image is built from transparent ink layers, as if each color were printed separately on top of the others. Shapes intentionally overlap, and wherever they overlap the two inks multiply into a darker third color: a teal leaf over yellow becomes deep green, pink over mint becomes a muted plum. The color layers show slight misregistration. Each character or object is one large, simple silhouette printed flat in a single main color, with rounded, simplified, exaggerated shapes. Edges are formed by the color shapes themselves, not by lines. Use only four to five inks from teal, coral red, mustard yellow, soft pink and mint, on a warm cream paper background. Every color area has fine print grain, and some areas carry halftone dots or simple repeating patterns printed as a separate layer. Faces have dot eyes, round cheek blush and a simple smile, with black ink used only for eyes and tiny details. No opaque painted fills, no patchwork of multicolored blocks, no outlines, no gradients, no realistic shading, no text.",
@@ -108,7 +100,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 9,
+  "n": 8,
   "name": "유아용 보드북",
   "id": "board_book",
   "after": "A children's board book illustration. Characters have simple rounded proportions with a large head and a short, chubby body. Eyes are big round white circles with large dark pupils and a few short eyelash strokes. Cheeks have large round coral or pink blush, the mouth is a simple curved smile, and the nose is a small dot or short curve. All shapes are painted in flat solid colors with almost no shading, and hair or fur texture is shown only with a few lighter strokes. Every color area has a fine crayon or colored-pencil grain texture. No thick outlines; thin lines are used only for small details like whiskers and eyelashes. Use bright, warm colors such as cobalt blue, sunny yellow, tomato red, lavender and mint. No gradients, no airbrushed shading, no glossy highlights, no white sticker border, no text.",
@@ -125,7 +117,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 10,
+  "n": 9,
   "name": "플랫 벡터 아이콘",
   "id": "flat_vector_icon",
   "after": "A flat vector icon sticker illustration for children. Each object is reduced to its most recognizable simple, rounded silhouette. It is painted in two to four clean, flat solid colors, with only minimal details such as a few dots, short lines or small patterns. Almost no shading; at most a single light highlight stroke. If a face is included, it has only dot eyes and a simple curved smile. Use bright, saturated reds, oranges, yellows, greens and blues. The whole object is surrounded by an even, solid white die-cut sticker border. No texture, no gradients, no realistic shading, no black outlines, no text.",
@@ -138,7 +130,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 11,
+  "n": 10,
   "name": "파스텔 클레이 3D",
   "id": "pastel_clay_3d",
   "after": "A soft pastel 3D illustration. Every form is a simple, rounded, puffy shape that looks sculpted from clay or matte plastic, with minimal detail. Surfaces are smooth and matte with no glossy reflections. Soft diffused light from the upper front gives gentle shading, with only a faint, soft contact shadow where objects touch the ground. Use low-saturation pastel colors such as sage green, blush pink, peach, butter yellow and lilac, keeping contrast low and calm. If there is a character, it has a rounded body, a large head, small dot eyes and subtle cheek blush. No realistic textures, no strong gloss, no hard shadows, no high saturation, no text.",
@@ -151,7 +143,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 12,
+  "n": 11,
   "name": "크레용 지오메트릭",
   "id": "crayon_geometric",
   "after": "A playful, quirky children's picture book illustration. Each animal's body is boldly reduced to one large simple shape such as a half circle, triangle, dome or rounded rectangle, with thin short stick legs and humorously exaggerated snouts or tails. Eyes are two small black dots set close together, with small round red or pink cheek blush and a dot nose. Main shapes have no outlines and are painted in flat solid colors; only details like legs, whiskers, tentacles and fur strokes are drawn with thin, dark, hand-drawn lines. Bodies carry simple patterns of short dashes, dots, curly scribbles, grids or stripes. Every color area has a fine crayon or colored-pencil grain texture. Use mainly cobalt blue, red, orange, pink, lavender and mustard yellow, with white and black only as accents. No gradients, no realistic shading, no realistic proportions, no gloss, no thick outlines, no text.",
@@ -164,7 +156,7 @@ window.STYLES_V1 = [
   ]
  },
  {
-  "n": 13,
+  "n": 12,
   "name": "카와이 두들",
   "id": "kawaii_doodle",
   "after": "A kawaii doodle sticker illustration for children. Objects and characters are simplified into rounded, chubby shapes painted in bright flat colors, with smooth, even outlines in a darker shade of each fill color; black is used only for small parts like tires. A small face sits close together inside a window or a light-colored panel. The eyes are two tiny vertical oval black dots set wide apart, each with one very small white highlight dot near the top. For a wink, one eye is a short chevron (>) line. The mouth is a very small open rounded half-moon shape in red or coral, or a short curve, placed below and between the eyes. Small soft pink oval blush sits just below and outside each eye. No nose and no eyebrows. Glass has two short white diagonal reflection strokes. A few small decorations are scattered loosely around the subject: tiny cross-shaped sparkles, small circles, wavy squiggles, motion lines or puffs of steam. Use bright, clear yellow, orange, sky blue, blue, green and purple on a white background. No gradients, no realistic shading, no texture, no big eyes, no eyelashes, no text.",
