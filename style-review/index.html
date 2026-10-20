@@ -152,9 +152,11 @@ details.before .prompt{margin-top:6px}
 .card .slot.ins-before{box-shadow:-4px 0 0 0 var(--accent)}
 .card .slot.ins-after{box-shadow:4px 0 0 0 var(--accent)}
 .card .slot .del{position:absolute;right:6px;top:6px;width:26px;height:26px;border-radius:50%;border:0;background:#000000a0;color:#fff;font-size:15px;line-height:26px;cursor:pointer;padding:0}
+.card .slot .dl{position:absolute;right:38px;top:6px;width:26px;height:26px;border-radius:50%;border:0;background:#000000a0;color:#fff;font-size:14px;line-height:26px;cursor:pointer;padding:0}
+.card .slot .dl:hover{background:var(--accent)}
 .card .slot .del:hover,.card .slot .del.armed{background:#c0392b}
 .card .slot .del.armed{width:auto;border-radius:13px;padding:0 10px;font-size:12px;font-weight:700}
-.card .slot small{position:absolute;left:6px;top:6px;background:#ffffffe0;color:#22334c;border-radius:6px;padding:2px 6px;font-size:11px;max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .slot small{position:absolute;left:6px;top:6px;background:#ffffffe0;color:#22334c;border-radius:6px;padding:2px 6px;font-size:11px;max-width:calc(100% - 82px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .acts{display:flex;gap:6px;flex-wrap:wrap}
 .card .acts .btn{font-size:13px;padding:9px 13px}
 .card h3{font-size:14px;margin:4px 0 6px}
@@ -419,10 +421,28 @@ function copy(text){
 // 이미지 다운로드 (샘플은 상대 경로, 참고 이미지는 data URL)
 const extOf = src => (src.match(/^data:image\/(png|jpeg|webp)/)?.[1] || src.split('.').pop()).replace('jpeg', 'jpg');
 const safeName = s => s.replace(/[\\/:*?"<>|\s]+/g, '_');
-function download(src, filename){
-  const a = document.createElement('a');
-  a.href = src; a.download = filename;
-  document.body.appendChild(a); a.click(); a.remove();
+// Claude 아티팩트 화면에서는 downloads 기능으로 저장하고, 일반 브라우저(GitHub Pages)에서는 링크로 내려받는다
+let dlCap;
+const getDl = () => dlCap ??= (window.claude?.use ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null));
+async function download(src, filename){
+  const dl = await getDl();
+  if (!dl) {
+    const a = document.createElement('a');
+    a.href = src; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    return true;
+  }
+  try {
+    const blob = await (await fetch(src)).blob();
+    await dl.save({filename, data: blob});
+    return true;
+  } catch (e) {
+    if (e?.code !== 'declined') status('이 화면에서는 이미지를 내려받을 수 없습니다.');
+    return false;
+  }
+}
+async function downloadAll(items){
+  for (const [src, name] of items) if (!(await download(src, name))) break;
 }
 const sampleName = (s, i) => `${pad(s.n)}_${s.id}${i ? '_' + (i + 1) : ''}.${extOf(s.images[i].src)}`;
 const refName = i => `ref_${i + 1}_${refs[i].role}.${extOf(refs[i].data)}`;
@@ -445,11 +465,11 @@ function zoomRef(e){
 $('previewDownload').addEventListener('click', () => previewFile && download(previewFile.src, safeName(previewFile.filename)));
 $('dlSample').addEventListener('click', () => {
   const s = current();
-  s.images.forEach((_, i) => setTimeout(() => download(s.images[i].src, sampleName(s, i)), i * 300));
+  downloadAll(s.images.map((im, i) => [im.src, sampleName(s, i)]));
   status(`${s.name} 샘플 ${s.images.length}장을 다운로드합니다.`);
 });
 $('dlRefs').addEventListener('click', () => {
-  refs.forEach((_, i) => setTimeout(() => download(refs[i].data, refName(i)), i * 300));
+  downloadAll(refs.map((r, i) => [r.data, refName(i)]));
   status(`참고 이미지 ${refs.length}장을 첨부 순서대로 다운로드합니다.`);
 });
 
@@ -556,7 +576,7 @@ function renderCards(){
     const pics = cardPics(s);
     return `<article class="card" id="card_${s.id}" data-id="${s.id}">
       <div class="head"><span class="num">${pad(s.n)}</span><div><div class="nm">${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div></div>
-      <div class="pics">${pics.length ? pics.map((p, i) => `<div class="slot" draggable="true" data-key="${esc(p.key)}" title="좌우로 끌어서 순서 변경"><img src="${p.src}" alt="${esc(p.label)}" loading="lazy" data-pic="${i}" draggable="false"><small>${esc(p.label)}</small><button type="button" class="del" data-del="${i}" title="이미지 삭제" aria-label="${esc(p.label)} 삭제">×</button></div>`).join('') : '<div class="slot">샘플 이미지 없음<br>이미지를 추가하세요</div>'}</div>
+      <div class="pics">${pics.length ? pics.map((p, i) => `<div class="slot" draggable="true" data-key="${esc(p.key)}" title="좌우로 끌어서 순서 변경"><img src="${p.src}" alt="${esc(p.label)}" loading="lazy" data-pic="${i}" draggable="false"><small>${esc(p.label)}</small><button type="button" class="dl" data-dl="${i}" title="이미지 다운로드" aria-label="${esc(p.label)} 다운로드">↓</button><button type="button" class="del" data-del="${i}" title="이미지 삭제" aria-label="${esc(p.label)} 삭제">×</button></div>`).join('') : '<div class="slot">샘플 이미지 없음<br>이미지를 추가하세요</div>'}</div>
       <div class="acts">
         <button class="btn" data-act="add">+ 이미지 추가</button>
         <button class="btn secondary" data-act="en">영문 복사</button>
@@ -589,6 +609,10 @@ cardInput.addEventListener('change', async () => {
 $('cards').addEventListener('click', e => {
   const card = e.target.closest('.card'); if (!card) return;
   const s = STYLES.find(x => x.id === card.dataset.id);
+  if (e.target.dataset.dl !== undefined) {
+    const p = cardPics(s)[+e.target.dataset.dl]; if (p) download(p.src, safeName(p.file));
+    return;
+  }
   if (e.target.dataset.del !== undefined) {
     const btn = e.target, p = cardPics(s)[+btn.dataset.del]; if (!p) return;
     // 한 번 누르면 확인 상태, 3초 안에 다시 누르면 삭제
