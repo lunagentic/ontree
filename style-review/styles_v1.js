@@ -88,6 +88,14 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_printmaking_dog.jpg",
     "label": "레퍼런스 2 · 블록 프린트"
+   },
+   {
+    "src": "images/v1_printmaking_capybara.png",
+    "label": "레퍼런스 3"
+   },
+   {
+    "src": "images/v1_printmaking_otter.png",
+    "label": "레퍼런스 4"
    }
   ]
  },
@@ -131,6 +139,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_pastel_clay_3d.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_pastel_clay_3d_spring.jpg",
+    "label": "레퍼런스 2"
    }
   ]
  },
