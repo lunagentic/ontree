@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>스타일 마스터 검수</title>
-<meta name="description" content="킨더보드 이미지 스타일 18종을 검수하고, 주제와 조합해 영문·한글 이미지 생성 프롬프트를 만듭니다.">
+<meta name="description" content="킨더보드 이미지 스타일을 검수하고, 주제와 조합해 영문·한글 이미지 생성 프롬프트를 만듭니다.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="스타일 마스터 검수">
-<meta property="og:description" content="킨더보드 이미지 스타일 18종을 검수하고, 주제와 조합해 영문·한글 이미지 생성 프롬프트를 만듭니다.">
+<meta property="og:description" content="킨더보드 이미지 스타일을 검수하고, 주제와 조합해 영문·한글 이미지 생성 프롬프트를 만듭니다.">
 <meta property="og:url" content="https://lunagentic.github.io/ontree/style-review/">
 <meta property="og:image" content="https://lunagentic.github.io/ontree/style-review/images/07_texture_collage.jpg">
 <meta property="og:image:width" content="1491">
@@ -107,6 +107,14 @@ dialog::backdrop{background:#0009}
 header .in{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 header .hbtn{background:#ffffff26;color:#fff;border:1px solid #ffffff55}
 header .hbtn:hover{background:#ffffff3d}
+.ver{display:inline-flex;background:#ffffff1f;border:1px solid #ffffff55;border-radius:10px;padding:3px;gap:3px}
+.ver button{border:0;background:none;color:#fff;font:inherit;font-size:13px;font-weight:700;padding:7px 12px;border-radius:7px;cursor:pointer;opacity:.8}
+.ver button[aria-pressed="true"]{background:#fff;color:var(--header);opacity:1}
+.hright{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.card .prompt.clip{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:0}
+.card.open .prompt.clip{display:block}
+.card .more{border:0;background:none;color:var(--accent-text);font:inherit;font-size:12px;font-weight:700;padding:4px 0 0;cursor:pointer}
+.en-note{font-size:12px;color:var(--muted);margin:4px 0 0}
 #mapping{max-width:1280px;margin:20px auto 0;padding:0 16px}
 #mapping .panel{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
@@ -139,7 +147,16 @@ details.before .prompt{margin-top:6px}
 .card .pics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .card .slot{position:relative;aspect-ratio:1/1;border-radius:12px;background:var(--surface-2);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;text-align:center}
 .card .slot img{width:100%;height:100%;object-fit:contain;cursor:zoom-in;display:block}
-.card .slot small{position:absolute;left:6px;top:6px;background:#ffffffe0;color:#22334c;border-radius:6px;padding:2px 6px;font-size:11px;max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .slot[draggable]{cursor:grab}
+.card .slot.dragging{opacity:.4}
+.card .slot.ins-before{box-shadow:-4px 0 0 0 var(--accent)}
+.card .slot.ins-after{box-shadow:4px 0 0 0 var(--accent)}
+.card .slot .del{position:absolute;right:6px;top:6px;width:26px;height:26px;border-radius:50%;border:0;background:#000000a0;color:#fff;font-size:15px;line-height:26px;cursor:pointer;padding:0}
+.card .slot .dl{position:absolute;right:38px;top:6px;width:26px;height:26px;border-radius:50%;border:0;background:#000000a0;color:#fff;font-size:14px;line-height:26px;cursor:pointer;padding:0}
+.card .slot .dl:hover{background:var(--accent)}
+.card .slot .del:hover,.card .slot .del.armed{background:#c0392b}
+.card .slot .del.armed{width:auto;border-radius:13px;padding:0 10px;font-size:12px;font-weight:700}
+.card .slot small{position:absolute;left:6px;top:6px;background:#ffffffe0;color:#22334c;border-radius:6px;padding:2px 6px;font-size:11px;max-width:calc(100% - 82px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .card .acts{display:flex;gap:6px;flex-wrap:wrap}
 .card .acts .btn{font-size:13px;padding:9px 13px}
 .card h3{font-size:14px;margin:4px 0 6px}
@@ -152,9 +169,15 @@ details.before .prompt{margin-top:6px}
 <header><div class="in">
   <div>
     <h1>스타일 마스터 검수</h1>
-    <p>18종 스타일의 샘플 기준 프롬프트를 검수하고, 주제와 조합해 이미지 생성용 영문·한글 프롬프트를 만듭니다.</p>
+    <p><span id="verDesc">v1 시트 12종</span> 스타일의 샘플 기준 프롬프트를 검수하고, 주제와 조합해 이미지 생성용 영문·한글 프롬프트를 만듭니다.</p>
   </div>
-  <button class="btn hbtn" id="toggleMap" aria-expanded="false" aria-controls="mapping">기존 유형 매칭표 보기</button>
+  <div class="hright">
+    <div class="ver" role="group" aria-label="스타일 버전">
+      <button type="button" data-ver="v1" aria-pressed="true">v1 시트</button>
+      <button type="button" data-ver="v2" aria-pressed="false">v2 시트</button>
+    </div>
+    <button class="btn hbtn" id="toggleMap" aria-expanded="false" aria-controls="mapping">기존 유형 매칭표 보기</button>
+  </div>
 </div></header>
 
 <div id="mapping" hidden>
@@ -176,10 +199,10 @@ details.before .prompt{margin-top:6px}
 <section id="cardsView" class="cards-wrap" role="tabpanel" aria-labelledby="tabCards">
   <div class="cards-bar">
     <input type="search" id="cardSearch" placeholder="스타일명 / ID 검색" aria-label="스타일 카드 검색">
-    <button class="btn" id="copyAllEn">18종 영문 프롬프트 복사</button>
-    <button class="btn secondary" id="copyAllKo">18종 한글 프롬프트 복사</button>
+    <button class="btn" id="copyAllEn"><span class="cnt">18</span>종 영문 프롬프트 복사</button>
+    <button class="btn secondary" id="copyAllKo"><span class="cnt">18</span>종 한글 프롬프트 복사</button>
   </div>
-  <p class="hint">신규 프롬프트는 각 스타일의 샘플(레퍼런스) 이미지를 기준으로 작성했고, 기존 프롬프트는 이전 스타일 파일의 내용입니다. 추가한 예시 이미지는 이 브라우저에만 저장됩니다.</p>
+  <p class="hint">신규 프롬프트는 각 스타일의 샘플(레퍼런스) 이미지를 기준으로 작성했고, 기존 프롬프트는 이전 스타일 파일의 내용입니다. 추가하거나 삭제한 이미지는 이 브라우저에만 저장됩니다. 카드 이미지의 ×로 삭제하고, 숨긴 샘플은 복원할 수 있습니다. 이미지를 좌우로 끌면 순서가 바뀌고 첫 이미지가 대표 썸네일이 됩니다.</p>
   <div class="cards" id="cards"></div>
 </section>
 
@@ -240,14 +263,19 @@ details.before .prompt{margin-top:6px}
 </dialog>
 
 <script src="styles.js"></script>
+<script src="styles_v1.js"></script>
 <script>
-const STYLES = window.STYLES;
+// 스타일 버전: v1 = Google 시트(시트2) 기준 (기본값), v2 = 이전 18종(v6.6) 중 9종
+const VERSIONS = {v1: {label: 'v1 시트', list: window.STYLES_V1 || []}, v2: {label: 'v2 시트', list: window.STYLES}};
+let STYLES = VERSIONS.v1.list;
 const EXAMPLES = ['사과를 든 토끼','숲속을 걷는 곰','무지개와 구름','바닷속 물고기 친구들','해바라기 꽃밭','공룡 친구'];
 const STORE = 'kb_prompt_gen_v1';
 const $ = id => document.getElementById(id);
 
 let state = {subject:'', subjectEn:'', details:'', styleId: STYLES[0].id};
 try { Object.assign(state, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) {}
+if (!VERSIONS[state.version] || !state.versionChosen) state.version = 'v1';
+STYLES = VERSIONS[state.version].list;
 if (!STYLES.some(s => s.id === state.styleId)) state.styleId = STYLES[0].id;
 
 const pad = n => String(n).padStart(2, '0');
@@ -342,7 +370,7 @@ function renderGrid(){
   const q = $('search').value.trim().toLowerCase();
   const list = STYLES.filter(s => (s.name + s.id + (s.old || '')).toLowerCase().includes(q));
   $('grid').innerHTML = list.map(s => {
-    const img = s.images[0];
+    const img = cardPics(s)[0];
     return `<button type="button" class="style" role="radio" aria-checked="${s.id === state.styleId}" data-id="${s.id}">
       <div class="thumb">${img ? `<img src="${img.src}" alt="" loading="lazy">` : '<span class="no">이미지 없음</span>'}</div>
       <div class="meta"><div class="no">${pad(s.n)} · ${esc(s.id)}</div><div class="nm">${esc(s.name)}</div></div>
@@ -352,7 +380,7 @@ function renderGrid(){
 
 function renderOutput(){
   const s = current();
-  const first = s.images[0];
+  const first = cardPics(s)[0];
   $('selected').innerHTML = `${first ? `<img src="${first.src}" alt="${esc(s.name)} 예시" data-zoom="0">` : ''}
     <div><div class="nm">${pad(s.n)} ${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div>`;
   $('gallery').innerHTML = s.images.length > 1
@@ -393,10 +421,28 @@ function copy(text){
 // 이미지 다운로드 (샘플은 상대 경로, 참고 이미지는 data URL)
 const extOf = src => (src.match(/^data:image\/(png|jpeg|webp)/)?.[1] || src.split('.').pop()).replace('jpeg', 'jpg');
 const safeName = s => s.replace(/[\\/:*?"<>|\s]+/g, '_');
-function download(src, filename){
-  const a = document.createElement('a');
-  a.href = src; a.download = filename;
-  document.body.appendChild(a); a.click(); a.remove();
+// Claude 아티팩트 화면에서는 downloads 기능으로 저장하고, 일반 브라우저(GitHub Pages)에서는 링크로 내려받는다
+let dlCap;
+const getDl = () => dlCap ??= (window.claude?.use ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null));
+async function download(src, filename){
+  const dl = await getDl();
+  if (!dl) {
+    const a = document.createElement('a');
+    a.href = src; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    return true;
+  }
+  try {
+    const blob = await (await fetch(src)).blob();
+    await dl.save({filename, data: blob});
+    return true;
+  } catch (e) {
+    if (e?.code !== 'declined') status('이 화면에서는 이미지를 내려받을 수 없습니다.');
+    return false;
+  }
+}
+async function downloadAll(items){
+  for (const [src, name] of items) if (!(await download(src, name))) break;
 }
 const sampleName = (s, i) => `${pad(s.n)}_${s.id}${i ? '_' + (i + 1) : ''}.${extOf(s.images[i].src)}`;
 const refName = i => `ref_${i + 1}_${refs[i].role}.${extOf(refs[i].data)}`;
@@ -419,11 +465,11 @@ function zoomRef(e){
 $('previewDownload').addEventListener('click', () => previewFile && download(previewFile.src, safeName(previewFile.filename)));
 $('dlSample').addEventListener('click', () => {
   const s = current();
-  s.images.forEach((_, i) => setTimeout(() => download(s.images[i].src, sampleName(s, i)), i * 300));
+  downloadAll(s.images.map((im, i) => [im.src, sampleName(s, i)]));
   status(`${s.name} 샘플 ${s.images.length}장을 다운로드합니다.`);
 });
 $('dlRefs').addEventListener('click', () => {
-  refs.forEach((_, i) => setTimeout(() => download(refs[i].data, refName(i)), i * 300));
+  downloadAll(refs.map((r, i) => [r.data, refName(i)]));
   status(`참고 이미지 ${refs.length}장을 첨부 순서대로 다운로드합니다.`);
 });
 
@@ -499,11 +545,29 @@ $('copyBefore').addEventListener('click', () => copy(current().before || ''));
 // 스타일 카드: 샘플 + 사용자가 추가한 예시 이미지, 신규(샘플 기준) / 기존(파일) 프롬프트
 let custom = {}; // {styleId: [{name, data}]}
 function saveCustom(){ db.set('custom', custom).catch(() => status('이 브라우저에는 예시 이미지를 저장할 수 없어 새로고침하면 사라집니다.')); }
+const ck = s => state.version === 'v1' ? 'v1:' + s.id : s.id;
+let hidden = {}; // {styleKey: [sample src]} 이 브라우저에서 숨긴 샘플 이미지
+function saveHidden(){ db.set('hidden', hidden).catch(() => {}); }
+let order = {}; // {styleKey: [picKey]} 이 브라우저에서 드래그로 바꾼 이미지 순서
+function saveOrder(){ db.set('order', order).catch(() => {}); }
+const customId = c => c.id ??= Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 function cardPics(s){
-  return [
-    ...s.images.map((im, i) => ({src: im.src, label: im.label, file: sampleName(s, i)})),
-    ...(custom[s.id] || []).map((c, i) => ({src: c.data, label: c.name, file: `${pad(s.n)}_${s.id}_example_${i + 1}.${extOf(c.data)}`})),
+  const hid = hidden[ck(s)] || [];
+  const pics = [
+    ...s.images.map((im, i) => ({src: im.src, label: im.label, file: sampleName(s, i), kind: 'sample', key: 'sample:' + im.src})).filter(p => !hid.includes(p.src)),
+    ...(custom[ck(s)] || []).map((c, i) => ({src: c.data, label: c.name, file: `${pad(s.n)}_${s.id}_example_${i + 1}.${extOf(c.data)}`, kind: 'custom', ci: i, key: 'custom:' + customId(c)})),
   ];
+  const ord = order[ck(s)] || [];
+  const rank = p => { const i = ord.indexOf(p.key); return i < 0 ? ord.length + pics.indexOf(p) : i; };
+  return pics.sort((a, b) => rank(a) - rank(b));
+}
+// 카드 이미지 좌우 드래그로 순서 바꾸기
+let drag = null; // {styleId, key}
+function movePic(s, fromKey, toKey, after){
+  const keys = cardPics(s).map(p => p.key).filter(k => k !== fromKey);
+  let i = keys.indexOf(toKey); if (i < 0) return;
+  keys.splice(i + (after ? 1 : 0), 0, fromKey);
+  order[ck(s)] = keys; saveOrder(); renderCards(); renderGrid(); renderOutput();
 }
 function renderCards(){
   const q = $('cardSearch').value.trim().toLowerCase();
@@ -512,15 +576,15 @@ function renderCards(){
     const pics = cardPics(s);
     return `<article class="card" id="card_${s.id}" data-id="${s.id}">
       <div class="head"><span class="num">${pad(s.n)}</span><div><div class="nm">${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div></div>
-      <div class="pics">${pics.length ? pics.map((p, i) => `<div class="slot"><img src="${p.src}" alt="${esc(p.label)}" loading="lazy" data-pic="${i}"><small>${esc(p.label)}</small></div>`).join('') : '<div class="slot">샘플 이미지 없음<br>이미지를 추가하세요</div>'}</div>
+      <div class="pics">${pics.length ? pics.map((p, i) => `<div class="slot" draggable="true" data-key="${esc(p.key)}" title="좌우로 끌어서 순서 변경"><img src="${p.src}" alt="${esc(p.label)}" loading="lazy" data-pic="${i}" draggable="false"><small>${esc(p.label)}</small><button type="button" class="dl" data-dl="${i}" title="이미지 다운로드" aria-label="${esc(p.label)} 다운로드">↓</button><button type="button" class="del" data-del="${i}" title="이미지 삭제" aria-label="${esc(p.label)} 삭제">×</button></div>`).join('') : '<div class="slot">샘플 이미지 없음<br>이미지를 추가하세요</div>'}</div>
       <div class="acts">
         <button class="btn" data-act="add">+ 이미지 추가</button>
         <button class="btn secondary" data-act="en">영문 복사</button>
         <button class="btn secondary" data-act="ko">한글 복사</button>
-        ${(custom[s.id] || []).length ? '<button class="btn secondary" data-act="rmlast">추가 이미지 마지막 삭제</button>' : ''}
+        ${(hidden[ck(s)] || []).length ? `<button class="btn secondary" data-act="restore">숨긴 샘플 복원 (${hidden[ck(s)].length})</button>` : ''}
       </div>
-      <div><h3>신규 프롬프트 · 한국어</h3><div class="prompt">${esc(s.after_ko)}</div></div>
-      <div><h3>New Prompt · English</h3><div class="prompt">${esc(s.after)}</div></div>
+      <div><h3>신규 프롬프트 · 한국어</h3><div class="prompt clip">${esc(s.after_ko)}</div></div>
+      <div><h3>New Prompt · English</h3><div class="prompt clip">${esc(s.after)}</div><button type="button" class="more" data-act="more" aria-expanded="false">프롬프트 전체 보기</button>${s.en_note ? `<p class="en-note">${esc(s.en_note)}</p>` : ''}</div>
       <details><summary>기존 프롬프트 확인 · 복사 (기존 ID: ${esc(s.old || '없음')})</summary>
         <div class="out-head"><strong>기존 프롬프트</strong><button class="btn secondary" data-act="before">복사</button></div>
         <div class="prompt">${esc(s.before || '기존 프롬프트 없음')}</div>
@@ -537,7 +601,7 @@ cardInput.addEventListener('change', async () => {
     if (!['image/png','image/jpeg','image/webp'].includes(f.type)) { status('PNG, JPG, WebP 이미지만 추가할 수 있습니다.'); continue; }
     if (f.size > MAX_BYTES) { status('이미지당 4MB 이하로 올려주세요.'); continue; }
     const data = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(f); });
-    (custom[s.id] ??= []).push({name: f.name || '추가 예시', data}); added++;
+    (custom[ck(s)] ??= []).push({name: f.name || '추가 예시', data}); added++;
   }
   cardInput.value = '';
   if (added) { saveCustom(); renderCards(); status(`${s.name}에 예시 이미지 ${added}장을 추가했습니다.`); }
@@ -545,6 +609,22 @@ cardInput.addEventListener('change', async () => {
 $('cards').addEventListener('click', e => {
   const card = e.target.closest('.card'); if (!card) return;
   const s = STYLES.find(x => x.id === card.dataset.id);
+  if (e.target.dataset.dl !== undefined) {
+    const p = cardPics(s)[+e.target.dataset.dl]; if (p) download(p.src, safeName(p.file));
+    return;
+  }
+  if (e.target.dataset.del !== undefined) {
+    const btn = e.target, p = cardPics(s)[+btn.dataset.del]; if (!p) return;
+    // 한 번 누르면 확인 상태, 3초 안에 다시 누르면 삭제
+    if (!btn.classList.contains('armed')) {
+      btn.classList.add('armed'); btn.textContent = '삭제'; btn.title = '한 번 더 누르면 삭제';
+      clearTimeout(btn.t); btn.t = setTimeout(() => { btn.classList.remove('armed'); btn.textContent = '×'; btn.title = '이미지 삭제'; }, 3000);
+      return;
+    }
+    if (p.kind === 'custom') { custom[ck(s)].splice(p.ci, 1); if (!custom[ck(s)].length) delete custom[ck(s)]; saveCustom(); }
+    else { (hidden[ck(s)] ??= []).push(p.src); saveHidden(); }
+    renderCards(); return status(p.kind === 'custom' ? '추가한 이미지를 삭제했습니다.' : '샘플 이미지를 숨겼습니다. 복원 버튼으로 되돌릴 수 있습니다.');
+  }
   if (e.target.dataset.pic !== undefined) {
     const p = cardPics(s)[+e.target.dataset.pic];
     return showImage(p.src, `${s.name} · ${p.label}`, p.file);
@@ -554,7 +634,8 @@ $('cards').addEventListener('click', e => {
     case 'en': copy(s.after); break;
     case 'ko': copy(s.after_ko); break;
     case 'before': copy(s.before || ''); break;
-    case 'rmlast': custom[s.id].pop(); if (!custom[s.id].length) delete custom[s.id]; saveCustom(); renderCards(); status('추가 이미지 마지막 항목을 삭제했습니다.'); break;
+    case 'more': { const open = card.classList.toggle('open'); e.target.textContent = open ? '프롬프트 접기' : '프롬프트 전체 보기'; e.target.setAttribute('aria-expanded', open); break; }
+    case 'restore': delete hidden[ck(s)]; saveHidden(); renderCards(); status('숨긴 샘플 이미지를 복원했습니다.'); break;
   }
 });
 $('cardSearch').addEventListener('input', renderCards);
@@ -570,8 +651,48 @@ function setView(v){
 }
 document.querySelector('.tabs').addEventListener('click', e => { if (e.target.dataset.view) setView(e.target.dataset.view); });
 
-renderGrid(); renderRefs(); renderOutput(); renderCards(); setView(state.view === 'gen' ? 'gen' : 'cards');
+function setVersion(v){
+  if (!VERSIONS[v]) return;
+  if (state.version && state.version !== v) state['sel_' + state.version] = state.styleId;
+  state.version = v;
+  STYLES = VERSIONS[v].list;
+  const keep = state['sel_' + v];
+  state.styleId = STYLES.some(s => s.id === keep) ? keep : (STYLES.some(s => s.id === state.styleId) ? state.styleId : STYLES[0].id);
+  for (const b of document.querySelectorAll('.ver [data-ver]')) b.setAttribute('aria-pressed', b.dataset.ver === v);
+  $('verDesc').textContent = `${VERSIONS[v].label} ${STYLES.length}종`;
+  for (const c of document.querySelectorAll('.cnt')) c.textContent = STYLES.length;
+  document.title = `스타일 마스터 검수 · ${VERSIONS[v].label}`;
+  save(); renderGrid(); renderOutput(); renderCards();
+}
+document.querySelector('.ver').addEventListener('click', e => { if (e.target.dataset.ver) { state.versionChosen = true; setVersion(e.target.dataset.ver); } });
+
+renderRefs(); setVersion(state.version); setView(state.view === 'gen' ? 'gen' : 'cards');
+db.get('hidden').then(v => { if (v && typeof v === 'object') { hidden = v; renderCards(); } }).catch(() => {});
 db.get('custom').then(v => { if (v && typeof v === 'object') { custom = v; renderCards(); } }).catch(() => {});
+db.get('order').then(v => { if (v && typeof v === 'object') { order = v; renderCards(); renderGrid(); renderOutput(); } }).catch(() => {});
+$('cards').addEventListener('dragstart', e => {
+  const slot = e.target.closest('.slot[data-key]'); if (!slot) return;
+  drag = {styleId: slot.closest('.card').dataset.id, key: slot.dataset.key};
+  slot.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move';
+  try { e.dataTransfer.setData('text/plain', slot.dataset.key); } catch (_) {}
+});
+$('cards').addEventListener('dragover', e => {
+  const slot = e.target.closest('.slot[data-key]'); if (!slot || !drag) return;
+  if (slot.closest('.card').dataset.id !== drag.styleId) return;
+  e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+  const r = slot.getBoundingClientRect(), after = e.clientX > r.left + r.width / 2;
+  for (const el of slot.parentElement.querySelectorAll('.slot')) el.classList.remove('ins-before', 'ins-after');
+  if (slot.dataset.key !== drag.key) slot.classList.add(after ? 'ins-after' : 'ins-before');
+});
+$('cards').addEventListener('drop', e => {
+  const slot = e.target.closest('.slot[data-key]'); if (!slot || !drag) return;
+  const s = STYLES.find(x => x.id === slot.closest('.card').dataset.id); if (!s || s.id !== drag.styleId) return;
+  e.preventDefault();
+  const r = slot.getBoundingClientRect(), after = e.clientX > r.left + r.width / 2;
+  if (slot.dataset.key !== drag.key) { movePic(s, drag.key, slot.dataset.key, after); status('이미지 순서를 바꿨습니다.'); }
+  drag = null;
+});
+$('cards').addEventListener('dragend', () => { drag = null; for (const el of $('cards').querySelectorAll('.slot')) el.classList.remove('dragging', 'ins-before', 'ins-after'); });
 db.get('refs').then(v => { if (Array.isArray(v) && v.length) { refs = v.slice(0, MAX_REFS); renderRefs(); renderOutput(); } }).catch(() => {});
 </script>
 </body>
