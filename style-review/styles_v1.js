@@ -80,7 +80,12 @@ window.STYLES_V1 = [
   "id": "pastel_storybook",
   "after": "A calm, muted flat vector picture book illustration. Every shape is a flat solid color area with no outlines, rounded and simplified with minimal detail. Use a soft, desaturated pastel palette of sage green, mustard, coral, dusty blue and cream, with a very fine subtle grain texture inside the color areas. Almost no shading; where needed, a shadow is a single slightly darker tone of the same color. Characters have round heads, simple bodies, small dot eyes and a simple smile. Backgrounds layer simple decorative leaves, trees and grass while keeping generous open space. One scene with a single subject, nothing scary for young children, and absolutely no letters, numbers or text in the image. Keep the subject's whole body inside the frame, well away from every edge, so nothing is cropped. No gradients, no realistic shading, no gloss, no black outlines.",
   "after_ko": "차분한 색감의 플랫 벡터 그림책 일러스트. 모든 형태는 외곽선 없이 평평한 단색 면으로 만들고, 둥글고 단순하게 정리하며 디테일은 최소화한다. 세이지 그린, 머스터드, 코랄, 더스티 블루, 크림처럼 채도를 낮춘 부드러운 파스텔 팔레트를 쓰고, 색면 안에 아주 고운 입자 질감을 살짝 넣는다. 명암은 거의 없고, 필요하면 같은 색의 살짝 진한 톤 한 단계로만 그림자를 표현한다. 캐릭터는 둥근 머리와 단순한 몸, 작은 점 눈과 단순한 미소를 가진다. 배경은 단순한 잎·나무·풀 같은 장식 요소를 겹쳐 두되 넓은 여백을 남긴다. 한 장면·단일 주제, 유아가 무서워할 요소 없음, 이미지 안에 글자·숫자·문자 절대 없음. 주인공은 몸 전체가 프레임 안에 온전히 들어오게 그리고, 화면 가장자리에서 넉넉히 떨어뜨려 어느 방향으로도 잘리지 않게 한다. 그라데이션, 사실적 명암, 광택, 검정 외곽선은 쓰지 않는다.",
-  "images": []
+  "images": [
+   {
+    "src": "images/v1_pastel_storybook.jpg",
+    "label": "레퍼런스"
+   }
+  ]
  },
  {
   "n": 7,
