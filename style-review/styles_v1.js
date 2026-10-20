@@ -1,4 +1,4 @@
-// 킨더보드 이미지 스타일 v1 데이터 (Google 시트 '시트2' 기준, 12종)
+// 킨더보드 이미지 스타일 v1 데이터 (Google 시트 '시트2' 기준, 13종)
 // 원본: https://docs.google.com/spreadsheets/d/1ycD9z50fKwnIBtImLeykIEh9esSHTfJgP4CfimKvRlc (시트2)
 window.STYLES_V1 = [
  {
@@ -185,6 +185,23 @@ window.STYLES_V1 = [
    },
    {
     "src": "images/v1_korean_minhwa_tiger.png",
+    "label": "레퍼런스 2"
+   }
+  ]
+ },
+ {
+  "n": 13,
+  "name": "글리터 브러시",
+  "id": "glitter_brush",
+  "after": "A bright, sparkly digital painting sticker illustration for children. The subject is painted with thick, clearly textured digital brush strokes like oil pastel and gouache, with rough, broken brush edges left visible. Several lighter and darker tones of the same hue are layered within one object, darker toward the edges and brighter in the center, giving a plump, rounded volume. Use vivid, highly saturated colors such as orange, red, magenta, purple, sky blue and yellow. Scatter small white speckles, tiny gold glitter dots and bright highlight patches across the surface. If a face is included, it has large round white eyes with brown pupils and a small smile. A soft shadow sits lightly under the subject, and the background is either empty or a single roughly brushed pastel color circle behind the subject with a few small star decorations. No black outlines, no flat vector fills, no realistic textures, no text.",
+  "after_ko": "어린이를 위한 화사하고 반짝이는 디지털 페인팅 스티커 일러스트. 대상은 오일 파스텔과 구아슈처럼 두껍고 결이 또렷한 디지털 붓질로 칠하고, 붓 가장자리는 거칠게 끊어진 채 남긴다. 한 대상 안에서 같은 계열의 밝은 톤과 진한 톤을 여러 겹 섞어 칠하고, 가장자리는 진하게 가운데는 밝게 하여 도톰한 볼륨감을 준다. 주황·빨강·마젠타·보라·하늘색·노랑처럼 채도 높은 선명한 색을 쓴다. 표면 곳곳에 작은 흰 반점, 금색 반짝이 점, 밝은 하이라이트 조각을 흩뿌린다. 얼굴을 넣을 때는 크고 둥근 흰 눈에 갈색 눈동자, 작은 미소로 표현한다. 바닥에는 부드러운 그림자를 살짝 두고, 배경은 비우거나 뒤에 거친 붓질로 칠한 파스텔 색 원 하나와 작은 별 장식 몇 개만 둔다. 검정 외곽선, 평평한 벡터 색면, 사실적 질감, 글자는 쓰지 않는다.",
+  "images": [
+   {
+    "src": "images/v1_glitter_brush_starfish.png",
+    "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_glitter_brush_shell.png",
     "label": "레퍼런스 2"
    }
   ]
