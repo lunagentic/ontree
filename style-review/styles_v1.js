@@ -11,6 +11,10 @@ window.STYLES_V1 = [
    {
     "src": "images/05_retro_geometric.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_nordic_kids_penguin.png",
+    "label": "레퍼런스 2"
    }
   ]
  },
@@ -53,6 +57,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_korean_minhwa.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_korean_minhwa_tiger.png",
+    "label": "레퍼런스 2"
    }
   ]
  },
@@ -84,6 +92,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_printmaking_zebra.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_printmaking_dog.jpg",
+    "label": "레퍼런스 2 · 블록 프린트"
    }
   ]
  },
@@ -123,7 +135,12 @@ window.STYLES_V1 = [
   "id": "pastel_clay_3d",
   "after": "A soft pastel 3D illustration. Every form is a simple, rounded, puffy shape that looks sculpted from clay or matte plastic, with minimal detail. Surfaces are smooth and matte with no glossy reflections. Soft diffused light from the upper front gives gentle shading, with only a faint, soft contact shadow where objects touch the ground. Use low-saturation pastel colors such as sage green, blush pink, peach, butter yellow and lilac, keeping contrast low and calm. If there is a character, it has a rounded body, a large head, small dot eyes and subtle cheek blush. No realistic textures, no strong gloss, no hard shadows, no high saturation, no text.",
   "after_ko": "부드러운 파스텔 3D 일러스트. 모든 형태는 점토나 매트한 플라스틱으로 빚은 듯한 둥글고 부풀린 단순한 입체로 표현하고, 디테일은 최소화한다. 표면은 매끈한 무광이며 광택 반사가 없다. 정면 위쪽에서 오는 부드러운 확산광으로 은은한 음영을 주고, 바닥에 닿는 부분에만 옅고 부드러운 그림자를 둔다. 세이지 그린, 블러시 핑크, 피치, 버터 옐로, 라일락 같은 채도 낮은 파스텔 색을 쓰고, 대비는 낮고 차분하게 유지한다. 캐릭터가 있다면 둥근 몸과 큰 머리, 작은 점 눈과 은은한 볼터치를 가진다. 사실적 질감, 강한 광택, 날카로운 그림자, 높은 채도, 글자는 쓰지 않는다.",
-  "images": []
+  "images": [
+   {
+    "src": "images/v1_pastel_clay_3d.png",
+    "label": "레퍼런스"
+   }
+  ]
  },
  {
   "n": 12,
@@ -147,7 +164,12 @@ window.STYLES_V1 = [
   "id": "crayon_geometric",
   "after": "A playful, quirky children's picture book illustration. Each animal's body is boldly reduced to one large simple shape such as a half circle, triangle, dome or rounded rectangle, with thin short stick legs and humorously exaggerated snouts or tails. Eyes are two small black dots set close together, with small round red or pink cheek blush and a dot nose. Main shapes have no outlines and are painted in flat solid colors; only details like legs, whiskers, tentacles and fur strokes are drawn with thin, dark, hand-drawn lines. Bodies carry simple patterns of short dashes, dots, curly scribbles, grids or stripes. Every color area has a fine crayon or colored-pencil grain texture. Use mainly cobalt blue, red, orange, pink, lavender and mustard yellow, with white and black only as accents. No gradients, no realistic shading, no realistic proportions, no gloss, no thick outlines, no text.",
   "after_ko": "장난스럽고 개성 있는 어린이 그림책 일러스트. 캐릭터의 몸통은 반원, 삼각형, 돔, 둥근 사각형 같은 크고 단순한 도형 하나로 과감하게 줄이고, 다리는 가늘고 짧은 막대 형태, 주둥이나 꼬리는 엉뚱하게 과장한다. 눈은 작은 검은 점 두 개를 가깝게 붙이고, 작고 동그란 빨강·분홍 볼터치와 점 코를 더한다. 주 형태에는 외곽선을 쓰지 않고 평평한 단색 면으로 칠하며, 다리·수염·촉수·털결 같은 디테일만 가늘고 어두운 손그림 선으로 그린다. 짧은 대시, 점무늬, 곱슬 낙서, 격자, 줄무늬로 몸에 무늬를 넣는다. 모든 색면에 크레용·색연필 같은 고운 입자 질감이 있다. 코발트 블루, 빨강, 주황, 분홍, 라벤더, 머스터드 옐로를 중심으로 쓰고, 흰색과 검정은 포인트로만 쓴다. 그라데이션, 사실적 명암, 사실적 비율, 광택, 굵은 외곽선, 글자는 쓰지 않는다.",
-  "images": []
+  "images": [
+   {
+    "src": "images/v1_crayon_geometric.png",
+    "label": "레퍼런스"
+   }
+  ]
  },
  {
   "n": 15,
@@ -155,6 +177,11 @@ window.STYLES_V1 = [
   "id": "kawaii_doodle",
   "after": "A kawaii doodle sticker illustration for children. Objects and characters are simplified into rounded, chubby shapes painted in bright flat colors, with smooth, even outlines in a darker shade of each fill color; black is used only for small parts like tires. A small face sits close together inside a window or a light-colored panel. The eyes are two tiny vertical oval black dots set wide apart, each with one very small white highlight dot near the top. For a wink, one eye is a short chevron (>) line. The mouth is a very small open rounded half-moon shape in red or coral, or a short curve, placed below and between the eyes. Small soft pink oval blush sits just below and outside each eye. No nose and no eyebrows. Glass has two short white diagonal reflection strokes. A few small decorations are scattered loosely around the subject: tiny cross-shaped sparkles, small circles, wavy squiggles, motion lines or puffs of steam. Use bright, clear yellow, orange, sky blue, blue, green and purple on a white background. No gradients, no realistic shading, no texture, no big eyes, no eyelashes, no text.",
   "after_ko": "어린이를 위한 카와이 두들 스티커 일러스트. 사물과 캐릭터는 둥글고 통통하게 단순화하고, 밝은 평면 색으로 칠한 뒤 같은 색 계열의 진한 톤으로 둥글고 일정한 굵기의 외곽선을 그린다. 바퀴처럼 작은 부분만 검정을 쓴다. 얼굴은 창문이나 밝은 면 안에 작게 모아 그린다. 눈은 작은 세로 타원형 검은 점 두 개를 서로 넓게 떨어뜨려 놓고, 각 눈 위쪽에 아주 작은 흰 하이라이트 점을 하나씩 넣는다. 윙크할 때는 한쪽 눈을 짧은 꺾쇠(>) 선으로 그린다. 입은 두 눈 사이 아래에 빨강·코랄색으로 아주 작게 벌린 둥근 반달 모양이나 짧은 곡선으로 그린다. 눈 바깥쪽 아래에 작고 부드러운 분홍 타원 볼터치를 넣고, 코와 눈썹은 그리지 않는다. 유리에는 짧은 흰 사선 반사광 두 줄을 넣는다. 주변에는 작은 십자 반짝이, 동그라미, 물결 낙서, 움직임 선, 김 같은 장식을 몇 개만 여유 있게 흩어 놓는다. 노랑, 주황, 하늘색, 파랑, 초록, 보라 같은 밝고 선명한 색을 쓰고 흰 배경에 둔다. 그라데이션, 사실적 명암, 질감, 큰 눈, 속눈썹, 글자는 쓰지 않는다.",
-  "images": []
+  "images": [
+   {
+    "src": "images/v1_kawaii_doodle.png",
+    "label": "레퍼런스"
+   }
+  ]
  }
 ];
