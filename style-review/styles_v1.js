@@ -113,6 +113,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_board_book_fennec.png",
     "label": "레퍼런스 2"
+   },
+   {
+    "src": "images/v1_board_book_broccoli.png",
+    "label": "레퍼런스 3"
    }
   ]
  },
@@ -177,6 +181,10 @@ window.STYLES_V1 = [
    {
     "src": "images/v1_crayon_geometric.png",
     "label": "레퍼런스"
+   },
+   {
+    "src": "images/v1_crayon_geometric_otter.png",
+    "label": "레퍼런스 2"
    }
   ]
  },
