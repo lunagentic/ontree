@@ -147,6 +147,10 @@ details.before .prompt{margin-top:6px}
 .card .pics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .card .slot{position:relative;aspect-ratio:1/1;border-radius:12px;background:var(--surface-2);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;text-align:center}
 .card .slot img{width:100%;height:100%;object-fit:contain;cursor:zoom-in;display:block}
+.card .slot[draggable]{cursor:grab}
+.card .slot.dragging{opacity:.4}
+.card .slot.ins-before{box-shadow:-4px 0 0 0 var(--accent)}
+.card .slot.ins-after{box-shadow:4px 0 0 0 var(--accent)}
 .card .slot .del{position:absolute;right:6px;top:6px;width:26px;height:26px;border-radius:50%;border:0;background:#000000a0;color:#fff;font-size:15px;line-height:26px;cursor:pointer;padding:0}
 .card .slot .del:hover,.card .slot .del.armed{background:#c0392b}
 .card .slot .del.armed{width:auto;border-radius:13px;padding:0 10px;font-size:12px;font-weight:700}
@@ -196,7 +200,7 @@ details.before .prompt{margin-top:6px}
     <button class="btn" id="copyAllEn"><span class="cnt">18</span>종 영문 프롬프트 복사</button>
     <button class="btn secondary" id="copyAllKo"><span class="cnt">18</span>종 한글 프롬프트 복사</button>
   </div>
-  <p class="hint">신규 프롬프트는 각 스타일의 샘플(레퍼런스) 이미지를 기준으로 작성했고, 기존 프롬프트는 이전 스타일 파일의 내용입니다. 추가하거나 삭제한 이미지는 이 브라우저에만 저장됩니다. 카드 이미지의 ×로 삭제하고, 숨긴 샘플은 복원할 수 있습니다.</p>
+  <p class="hint">신규 프롬프트는 각 스타일의 샘플(레퍼런스) 이미지를 기준으로 작성했고, 기존 프롬프트는 이전 스타일 파일의 내용입니다. 추가하거나 삭제한 이미지는 이 브라우저에만 저장됩니다. 카드 이미지의 ×로 삭제하고, 숨긴 샘플은 복원할 수 있습니다. 이미지를 좌우로 끌면 순서가 바뀌고 첫 이미지가 대표 썸네일이 됩니다.</p>
   <div class="cards" id="cards"></div>
 </section>
 
@@ -364,7 +368,7 @@ function renderGrid(){
   const q = $('search').value.trim().toLowerCase();
   const list = STYLES.filter(s => (s.name + s.id + (s.old || '')).toLowerCase().includes(q));
   $('grid').innerHTML = list.map(s => {
-    const img = s.images[0];
+    const img = cardPics(s)[0];
     return `<button type="button" class="style" role="radio" aria-checked="${s.id === state.styleId}" data-id="${s.id}">
       <div class="thumb">${img ? `<img src="${img.src}" alt="" loading="lazy">` : '<span class="no">이미지 없음</span>'}</div>
       <div class="meta"><div class="no">${pad(s.n)} · ${esc(s.id)}</div><div class="nm">${esc(s.name)}</div></div>
@@ -374,7 +378,7 @@ function renderGrid(){
 
 function renderOutput(){
   const s = current();
-  const first = s.images[0];
+  const first = cardPics(s)[0];
   $('selected').innerHTML = `${first ? `<img src="${first.src}" alt="${esc(s.name)} 예시" data-zoom="0">` : ''}
     <div><div class="nm">${pad(s.n)} ${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div>`;
   $('gallery').innerHTML = s.images.length > 1
@@ -524,12 +528,26 @@ function saveCustom(){ db.set('custom', custom).catch(() => status('이 브라�
 const ck = s => state.version === 'v1' ? 'v1:' + s.id : s.id;
 let hidden = {}; // {styleKey: [sample src]} 이 브라우저에서 숨긴 샘플 이미지
 function saveHidden(){ db.set('hidden', hidden).catch(() => {}); }
+let order = {}; // {styleKey: [picKey]} 이 브라우저에서 드래그로 바꾼 이미지 순서
+function saveOrder(){ db.set('order', order).catch(() => {}); }
+const customId = c => c.id ??= Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 function cardPics(s){
   const hid = hidden[ck(s)] || [];
-  return [
-    ...s.images.map((im, i) => ({src: im.src, label: im.label, file: sampleName(s, i), kind: 'sample'})).filter(p => !hid.includes(p.src)),
-    ...(custom[ck(s)] || []).map((c, i) => ({src: c.data, label: c.name, file: `${pad(s.n)}_${s.id}_example_${i + 1}.${extOf(c.data)}`, kind: 'custom', ci: i})),
+  const pics = [
+    ...s.images.map((im, i) => ({src: im.src, label: im.label, file: sampleName(s, i), kind: 'sample', key: 'sample:' + im.src})).filter(p => !hid.includes(p.src)),
+    ...(custom[ck(s)] || []).map((c, i) => ({src: c.data, label: c.name, file: `${pad(s.n)}_${s.id}_example_${i + 1}.${extOf(c.data)}`, kind: 'custom', ci: i, key: 'custom:' + customId(c)})),
   ];
+  const ord = order[ck(s)] || [];
+  const rank = p => { const i = ord.indexOf(p.key); return i < 0 ? ord.length + pics.indexOf(p) : i; };
+  return pics.sort((a, b) => rank(a) - rank(b));
+}
+// 카드 이미지 좌우 드래그로 순서 바꾸기
+let drag = null; // {styleId, key}
+function movePic(s, fromKey, toKey, after){
+  const keys = cardPics(s).map(p => p.key).filter(k => k !== fromKey);
+  let i = keys.indexOf(toKey); if (i < 0) return;
+  keys.splice(i + (after ? 1 : 0), 0, fromKey);
+  order[ck(s)] = keys; saveOrder(); renderCards(); renderGrid(); renderOutput();
 }
 function renderCards(){
   const q = $('cardSearch').value.trim().toLowerCase();
@@ -538,7 +556,7 @@ function renderCards(){
     const pics = cardPics(s);
     return `<article class="card" id="card_${s.id}" data-id="${s.id}">
       <div class="head"><span class="num">${pad(s.n)}</span><div><div class="nm">${esc(s.name)}</div><div class="id">${esc(s.id)}</div></div></div>
-      <div class="pics">${pics.length ? pics.map((p, i) => `<div class="slot"><img src="${p.src}" alt="${esc(p.label)}" loading="lazy" data-pic="${i}"><small>${esc(p.label)}</small><button type="button" class="del" data-del="${i}" title="이미지 삭제" aria-label="${esc(p.label)} 삭제">×</button></div>`).join('') : '<div class="slot">샘플 이미지 없음<br>이미지를 추가하세요</div>'}</div>
+      <div class="pics">${pics.length ? pics.map((p, i) => `<div class="slot" draggable="true" data-key="${esc(p.key)}" title="좌우로 끌어서 순서 변경"><img src="${p.src}" alt="${esc(p.label)}" loading="lazy" data-pic="${i}" draggable="false"><small>${esc(p.label)}</small><button type="button" class="del" data-del="${i}" title="이미지 삭제" aria-label="${esc(p.label)} 삭제">×</button></div>`).join('') : '<div class="slot">샘플 이미지 없음<br>이미지를 추가하세요</div>'}</div>
       <div class="acts">
         <button class="btn" data-act="add">+ 이미지 추가</button>
         <button class="btn secondary" data-act="en">영문 복사</button>
@@ -627,6 +645,30 @@ document.querySelector('.ver').addEventListener('click', e => { if (e.target.dat
 renderRefs(); setVersion(state.version); setView(state.view === 'gen' ? 'gen' : 'cards');
 db.get('hidden').then(v => { if (v && typeof v === 'object') { hidden = v; renderCards(); } }).catch(() => {});
 db.get('custom').then(v => { if (v && typeof v === 'object') { custom = v; renderCards(); } }).catch(() => {});
+db.get('order').then(v => { if (v && typeof v === 'object') { order = v; renderCards(); renderGrid(); renderOutput(); } }).catch(() => {});
+$('cards').addEventListener('dragstart', e => {
+  const slot = e.target.closest('.slot[data-key]'); if (!slot) return;
+  drag = {styleId: slot.closest('.card').dataset.id, key: slot.dataset.key};
+  slot.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move';
+  try { e.dataTransfer.setData('text/plain', slot.dataset.key); } catch (_) {}
+});
+$('cards').addEventListener('dragover', e => {
+  const slot = e.target.closest('.slot[data-key]'); if (!slot || !drag) return;
+  if (slot.closest('.card').dataset.id !== drag.styleId) return;
+  e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+  const r = slot.getBoundingClientRect(), after = e.clientX > r.left + r.width / 2;
+  for (const el of slot.parentElement.querySelectorAll('.slot')) el.classList.remove('ins-before', 'ins-after');
+  if (slot.dataset.key !== drag.key) slot.classList.add(after ? 'ins-after' : 'ins-before');
+});
+$('cards').addEventListener('drop', e => {
+  const slot = e.target.closest('.slot[data-key]'); if (!slot || !drag) return;
+  const s = STYLES.find(x => x.id === slot.closest('.card').dataset.id); if (!s || s.id !== drag.styleId) return;
+  e.preventDefault();
+  const r = slot.getBoundingClientRect(), after = e.clientX > r.left + r.width / 2;
+  if (slot.dataset.key !== drag.key) { movePic(s, drag.key, slot.dataset.key, after); status('이미지 순서를 바꿨습니다.'); }
+  drag = null;
+});
+$('cards').addEventListener('dragend', () => { drag = null; for (const el of $('cards').querySelectorAll('.slot')) el.classList.remove('dragging', 'ins-before', 'ins-after'); });
 db.get('refs').then(v => { if (Array.isArray(v) && v.length) { refs = v.slice(0, MAX_REFS); renderRefs(); renderOutput(); } }).catch(() => {});
 </script>
 </body>
